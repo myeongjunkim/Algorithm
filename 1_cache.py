@@ -16,4 +16,4 @@ def solution(cacheSize, cities):
                     oldest_city = cache[0]
                     cache.remove(oldest_city)
                 cache.append(city)
-return time
+    return time
