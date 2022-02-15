@@ -16,3 +16,5 @@ queue.append(7)
 deque([4, 5, 6, 7])
 queue.popleft()
 
+# 람다 정렬
+points= sorted(points, key = lambda x : (x[1],x[0]))
