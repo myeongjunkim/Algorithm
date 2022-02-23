@@ -33,7 +33,8 @@
 # 33 32 16 8 4 1
 # 39 13 12 4 2 1
 # 39 38 19 
-
+import sys
+sys.setrecursionlimit(10**6)
 
 def make_one(num, cnt):
     if num == 1:
