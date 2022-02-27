@@ -22,3 +22,11 @@ deque.remove(1)
 
 # 람다 정렬
 points= sorted(points, key = lambda x : (x[1],x[0]))
+
+
+
+def factorial(n):
+    result = 1
+    for i in range(1,n+1):
+        result*=i
+    return result
