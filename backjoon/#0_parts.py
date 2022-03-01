@@ -30,3 +30,12 @@ def factorial(n):
     for i in range(1,n+1):
         result*=i
     return result
+
+
+# 순열과 조합
+from itertools import permutations, product, combinations, combinations_with_replacement
+
+print(list(product([1,2,3,4], repeat=2)))
+print(list(permutations([1,2,3,4], 2)))
+print(list(combinations([1,2,3,4], 2)))
+print(list(combinations_with_replacement([1,2,3,4], 2)))
