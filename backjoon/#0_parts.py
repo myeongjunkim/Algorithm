@@ -39,3 +39,5 @@ print(list(product([1,2,3,4], repeat=2)))
 print(list(permutations([1,2,3,4], 2)))
 print(list(combinations([1,2,3,4], 2)))
 print(list(combinations_with_replacement([1,2,3,4], 2)))
+
+
