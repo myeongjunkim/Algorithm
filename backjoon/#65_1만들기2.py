@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-[최소 회수, 전 단계 인덱스(i)]
+# [최소 회수, 전 단계 인덱스(i)]
 
 def solution():
     N = int(input())
@@ -15,4 +15,13 @@ def solution():
         temp.append([dp[i-1][0]+1, i-1])
         temp.sort()
         dp.append(temp[0])
-    print(dp[N])
+
+    print(dp[N][0])
+    index = N
+    while True:
+        if index == 0:
+            break
+        print(index, end=' ')
+        index = dp[index][1]
+
+solution()
