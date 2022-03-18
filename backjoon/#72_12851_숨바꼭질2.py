@@ -6,27 +6,35 @@ input = sys.stdin.readline
 
 N, K = map(int, input().split())
 
-visited=[-1]*200001
-visited[N] = 1
+visited=[-1]*100001
+visited[N] = 0
 queue = deque()
-queue.append(N)
+queue.append([N,0])
+countdic = {}
 while queue:
-    pos = queue.popleft()
+    pos, length = queue.popleft()
+    # print(pos, visited[pos], result,flag)
+    visited[pos] = 0 
 
     if pos == K:
-        print(visited[pos]+1)
-        print(visited.count(visited[pos]+1))
-        break
+        try:
+            countdic[length] +=1
+        except KeyError:
+            countdic[length] = 1
 
-    if visited[pos-1] == -1 and pos-1 >= 0:
-        queue.append(pos-1)
-        visited[pos-1] = visited[pos] + 1
     
-    if visited[pos+1] == -1 and pos+1 <= 100000:
-        queue.append(pos+1)
-        visited[pos+1] = visited[pos] + 1
+    else:
+        if pos-1 >= 0 and visited[pos-1] == -1 :
+            queue.append([pos-1, length+1])
+        
+        if pos+1 <= 100000 and visited[pos+1] == -1 :
+            queue.append([pos+1, length+1])
 
-    if visited[2*pos] == -1 and 2*pos <= 200000:
-        queue.append(pos*2)
-        visited[pos*2] = visited[pos]
-    
+        if 2*pos <= 100000 and visited[2*pos] == -1:
+            queue.append([pos*2, length+1])
+
+
+
+key = list(countdic.keys())[0]
+print(key)
+print(countdic[key])
