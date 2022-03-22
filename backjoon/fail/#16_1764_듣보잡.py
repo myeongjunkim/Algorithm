@@ -1,9 +1,9 @@
-
-line = list(map(int,input('').split(' ')))
-M, N = line[0], line[1]
-
 import sys
-hear = [sys.stdin.readline().strip() for i in range(M)]
+input = sys.stdin.readline
+
+M, N  = map(int,input().split())
+hear = [input().strip() for i in range(M)]
+
 
 hear_watch=[]
 for i in range(N):
@@ -31,8 +31,3 @@ hear_watch.sort()
 
 print(hear_watch)
 
-# for r in hear_watch:
-#     print(r)
-
-
-## 다음에 다시,,,
