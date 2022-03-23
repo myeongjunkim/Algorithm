@@ -60,6 +60,7 @@ for line in real_data:
     print(next_line)
 
 
+
 sum = 0
 for line in real_data:
     sum += len(line)
