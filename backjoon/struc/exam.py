@@ -61,6 +61,7 @@ for line in real_data:
 
 
 
+
 sum = 0
 for line in real_data:
     sum += len(line)
