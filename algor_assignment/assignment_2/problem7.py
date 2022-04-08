@@ -21,7 +21,7 @@ def multify_matrix(matrix1, matrix2):
                 answer[i][j] += matrix1[i][k] * matrix2[k][j]
     return answer
 
-
+#strassen_idea 내에서 사용
 def split_matrix(matrix):
     a11, a12, a21,a22 = [], [], [], []
     M, N = len(matrix), len(matrix[0])
