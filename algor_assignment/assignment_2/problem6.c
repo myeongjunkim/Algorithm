@@ -2,8 +2,8 @@
 #include <stdlib.h> 
 
 int** pairSum(int arr[], int N, int target_sum, int* result_len);
-int main() {
 
+int main() {
     int arr[] = {2, 4, 3, 5, 6, -2, 4, 7, 8, 9};
     int arr_len = sizeof(arr)/sizeof(int);
     int target_sum = 7;
@@ -12,11 +12,12 @@ int main() {
     
     for(int i=0; i<result_len; i++){
         if(result_arr[i][1]<0){
-            printf("%d%d\n", result_arr[i][0],result_arr[i][1]);
+            printf("%d%d ", result_arr[i][0],result_arr[i][1]);
         } else{
-            printf("%d+%d\n", result_arr[i][0],result_arr[i][1]);
+            printf("%d+%d ", result_arr[i][0],result_arr[i][1]);
         }
     }
+    printf("\n");
     
 }
 
@@ -28,7 +29,6 @@ int** pairSum(int arr[], int N, int target_sum, int* result_len){
         result_arr[i] = (int*)malloc(sizeof(int) * 2); 
     }
     
-  
     int top = 0;
     for(int i=0; i<N; i++){
         for(int j=i+1; j<N; j++){
@@ -42,7 +42,5 @@ int** pairSum(int arr[], int N, int target_sum, int* result_len){
     }
 
     *result_len = top;
-
-    
     return result_arr;
 }

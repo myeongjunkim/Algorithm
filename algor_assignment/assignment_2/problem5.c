@@ -1,6 +1,5 @@
 #include<stdio.h>
 
-
 int main() {
     int matrix[5][5] = {
         {1,1,1,1,1},
@@ -23,5 +22,4 @@ int main() {
         }
         printf("\n");
     }
-
 }

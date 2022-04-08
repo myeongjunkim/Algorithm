@@ -1,8 +1,6 @@
 #include<stdio.h>
 
-
 int main() {
-
     char s1[100];
     printf("단어를 입력하세요: ");
     scanf("%s", s1);
@@ -15,7 +13,6 @@ int main() {
     int N = length/2;
     int flag = 1;
     for(int i= 0; i<N; i++){
-        // printf("%c and %c\n", s1[i], s1[length-1-i]);
         if(s1[i] != s1[length-1-i]){
             flag = 0;
             break;
