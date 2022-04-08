@@ -84,7 +84,7 @@ def strassen_idea(matrix1, matrix2):
     return answer
 
 # main
-matrix1, matrix2 = get_matrix(300,100), get_matrix(100, 500)
+matrix1, matrix2 = get_matrix(30,10), get_matrix(10, 50)
 
 start = time.time()
 origin_case = multify_matrix(matrix1, matrix2)
