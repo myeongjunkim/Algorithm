@@ -28,6 +28,5 @@ for i in range(N):
         hear_watch.append(watch)
 
 hear_watch.sort()
-
 print(hear_watch)
 
