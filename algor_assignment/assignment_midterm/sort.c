@@ -63,6 +63,27 @@ void insert_sort(int* arr, int N){
     }
 }
 
+void merge_sort(int* arr, int* sorted, int left, int right){
+    int mid = (left+right)/2;
+    if(left<right){
+        merge_sort(arr, sorted, left, mid);
+        merge_sort(arr, sorted, mid+1, right);
+    }
+    int i=left; int j=mid+1; int k=left;
+        while(i<=mid && j<= right){
+            if(arr[i]<arr[j]){
+                sorted[k] = arr[i];
+                i++;
+            } else{
+                sorted[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+    
+
+}
+
 
 int main() {
 
@@ -102,13 +123,23 @@ int main() {
     int w_insert_5000[5000];    copy_arr(w_arr_5000, w_insert_5000, 5000);
     int w_insert_10000[10000];  copy_arr(w_arr_10000, w_insert_10000, 10000);
 
-        insert_sort(r_insert_1000, 1000);
-        compare_arr(r_arr_1000, r_insert_1000, 1000);
+        // insert_sort(r_insert_1000, 1000);
+        // compare_arr(r_arr_1000, r_insert_1000, 1000);
 
 
     // merge sort
+    int r_merge_1000[1000];    copy_arr(r_arr_1000, r_merge_1000, 1000);
+    int r_merge_5000[5000];    copy_arr(r_arr_5000, r_merge_5000, 5000);
+    int r_merge_10000[10000];  copy_arr(r_arr_10000, r_merge_10000, 10000);
+    int w_merge_1000[1000];    copy_arr(w_arr_1000, w_merge_1000, 1000);
+    int w_merge_5000[5000];    copy_arr(w_arr_5000, w_merge_5000, 5000);
+    int w_merge_10000[10000];  copy_arr(w_arr_10000, w_merge_10000, 10000);
+
+        // int sorted[1000];
+        // merge_sort(r_merge_1000, sorted, 0, 999);
+        // compare_arr(r_arr_1000, sorted, 1000);
 
 
-
-
+    // Radix sort
+    
 }
