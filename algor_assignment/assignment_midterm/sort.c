@@ -49,31 +49,66 @@ void bubble_sort(int* arr, int N){
             }
         }
     }
-}      
+}
+
+void insert_sort(int* arr, int N){
+    for(int i=1; i<N; i++){
+        int target = arr[i]; int j;
+        for(j=i-1; j>=0; j--){
+            if(target < arr[j]){
+                arr[j+1] = arr[j];
+            } else break;
+        }
+        arr[j+1] = target;
+    }
+}
 
 
 int main() {
 
-    // 난수 배열 생성
+    // random arr gen
     int* r_arr_1000 = get_random_arr(1000);
     int* r_arr_5000 = get_random_arr(5000);
     int* r_arr_10000 = get_random_arr(10000);
 
-    // worst 배열 생성
+    // worst arr gen
     int* w_arr_1000 = get_worst_arr(1000);
     int* w_arr_5000 = get_worst_arr(5000);
     int* w_arr_10000 = get_worst_arr(10000);
 
-    //버블 정렬
-    int r_bubble_1000[1000];
-    int r_bubble_5000[5000];
-    int r_bubble_10000[10000];
-    copy_arr(r_arr_1000, r_bubble_1000, 1000);
-    copy_arr(r_arr_5000, r_bubble_5000, 5000);
-    copy_arr(r_arr_10000, r_bubble_10000, 10000);
 
-    bubble_sort(r_bubble_1000, 1000);
-    compare_arr(r_arr_1000, r_bubble_1000, 1000);
+    // sort algorithm
+
+    // bubble sort
+    int r_bubble_1000[1000];    copy_arr(r_arr_1000, r_bubble_1000, 1000);
+    int r_bubble_5000[5000];    copy_arr(r_arr_5000, r_bubble_5000, 5000);
+    int r_bubble_10000[10000];  copy_arr(r_arr_10000, r_bubble_10000, 10000);
+    int w_bubble_1000[1000];    copy_arr(w_arr_1000, w_bubble_1000, 1000);
+    int w_bubble_5000[5000];    copy_arr(w_arr_5000, w_bubble_5000, 5000);
+    int w_bubble_10000[10000];  copy_arr(w_arr_10000, w_bubble_10000, 10000);
+
+        // bubble_sort(r_bubble_1000, 1000);
+        // compare_arr(r_arr_1000, r_bubble_1000, 1000);
+
+        // bubble_sort(w_bubble_1000, 1000);
+        // compare_arr(w_arr_1000, w_bubble_1000, 1000);
+
+
+    // insert sort
+    int r_insert_1000[1000];    copy_arr(r_arr_1000, r_insert_1000, 1000);
+    int r_insert_5000[5000];    copy_arr(r_arr_5000, r_insert_5000, 5000);
+    int r_insert_10000[10000];  copy_arr(r_arr_10000, r_insert_10000, 10000);
+    int w_insert_1000[1000];    copy_arr(w_arr_1000, w_insert_1000, 1000);
+    int w_insert_5000[5000];    copy_arr(w_arr_5000, w_insert_5000, 5000);
+    int w_insert_10000[10000];  copy_arr(w_arr_10000, w_insert_10000, 10000);
+
+        insert_sort(r_insert_1000, 1000);
+        compare_arr(r_arr_1000, r_insert_1000, 1000);
+
+
+    // merge sort
+
+
 
 
 }
