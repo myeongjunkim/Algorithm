@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 
+// method about sort
 int* get_random_arr(int N){
     srand(time(NULL));
     int* arr = malloc(sizeof(int) * N);
@@ -40,6 +41,8 @@ void compare_arr(int* arr, int* arr2, int N){
     }
 }
 
+
+// sort algorithm
 void bubble_sort(int* arr, int N){
     for(int i=0; i<N; i++){
         for(int j=N-1; j>i; j--){
@@ -71,51 +74,52 @@ void merge_sort(int* arr, int* sorted, int left, int right){
         merge_sort(arr, sorted, mid+1, right);
     }
     int i=left; int j=mid+1; int k=left;
-        while(i<=mid && j<= right){
-            if(arr[i]<arr[j]){
-                sorted[k] = arr[i];
-                i++;
-            } else{
-                sorted[k] = arr[j];
-                j++;
-            }
-            k++;
+    while(i<=mid && j<= right){
+        if(arr[i]<arr[j]){
+            sorted[k] = arr[i];
+            i++;
+        } else{
+            sorted[k] = arr[j];
+            j++;
         }
+        k++;
+    }
 }
 
 
 
-void radix_sort(int* arr, int* sorted, int N){
-    // int digit=0, num=N-1;
-    // while(num!=0){
-    //     num /= 10;
-    //     digit++;
-    // }
+void radix_sort(int* arr, int N){
+    int* sorted = malloc(sizeof(int) * N);
+    // 최대 자리수 구함
+    int max = arr[0];
+    for(int i=1; i<N; i++){
+        if(arr[i]>max) max = arr[i];
+    }
+    int max_digit = 0;
+    while(max !=0){
+        max /=10;
+        max_digit++;
+    }
+
+    int digit = 1;
+    int r = 0; 
+    for(int i=0; i<max_digit; i++){
+        // 0~9 까지 돌면서 차곡차곡
+        for(int j=0; j<10; j++){
+            for(int k=0; k<N; k++){
+                if((arr[k]/digit)%10 == j){
+                    sorted[r] = arr[k];
+                    r++;
+                }
+            }
+        }
+        for(int k=0; k<N; k++){
+            arr[k] = sorted[k];
+        }
+        r = 0;
+        digit *=10;
+    }
     
-    
-
-    // for(int i=0; i<N; i++){
-    //     int target = arr[i];
-    //     int n = arr[i]%10
-    //     switch(target){
-    //         case
-    //     }
-
-    // }
-
-    // struct Node {
-    //     struct Node* next;
-    //     int data;
-    // };
-    // struct Node nodeList[10];
-
-    // for(int i=0; i<N; i++){
-    //     struct Node target_node = nodeList[arr[i]%10];
-    //     while(target_node.next){
-    //         target_node = target_node.next;
-    //     }
-    //     target_node.next = 
-    // }
 
 }
 
@@ -170,12 +174,21 @@ int main() {
     int w_merge_5000[5000];    copy_arr(w_arr_5000, w_merge_5000, 5000);
     int w_merge_10000[10000];  copy_arr(w_arr_10000, w_merge_10000, 10000);
 
-        // int sorted[1000];
-        // merge_sort(r_merge_1000, sorted, 0, 999);
-        // compare_arr(r_arr_1000, sorted, 1000);
+        // int merge_sorted[1000];
+        // merge_sort(r_merge_1000, merge_sorted, 0, 999);
+        // compare_arr(r_arr_1000, merge_sorted, 1000);
 
 
     // Radix sort
+    int r_radix_1000[1000];    copy_arr(r_arr_1000, r_radix_1000, 1000);
+    int r_radix_5000[5000];    copy_arr(r_arr_5000, r_radix_5000, 5000);
+    int r_radix_10000[10000];  copy_arr(r_arr_10000, r_radix_10000, 10000);
+    int w_radix_1000[1000];    copy_arr(w_arr_1000, w_radix_1000, 1000);
+    int w_radix_5000[5000];    copy_arr(w_arr_5000, w_radix_5000, 5000);
+    int w_radix_10000[10000];  copy_arr(w_arr_10000, w_radix_10000, 10000);    
+
+    radix_sort(r_radix_1000, 1000);
+    compare_arr(r_arr_1000, r_radix_1000, 1000);
 
 
 }
