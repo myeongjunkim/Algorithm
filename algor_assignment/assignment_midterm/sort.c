@@ -28,14 +28,14 @@ void copy_arr(int* arr, int* copy_arr, int n) {
 }
 
 void print_arr(int* arr, int N){
-    printf("행렬 출력\n\n");
+    printf("배열 출력\n\n");
     for(int i=0; i<N; i++){
         printf("%d번째 : %d\n", i, arr[i]);
     }
 }
 
 void compare_arr(int* arr, int* arr2, int N){
-    printf("\n행렬 출력\n\n");
+    printf("\nprint before and after\n\n");
     for(int i=0; i<N; i++){
         printf("%5d번째 : %5d -> %5d\n", i, arr[i], arr2[i]);
     }
@@ -86,8 +86,6 @@ void merge_sort(int* arr, int* sorted, int left, int right){
     }
 }
 
-
-
 void radix_sort(int* arr, int N){
     int* sorted = malloc(sizeof(int) * N);
     // 최대 자리수 구함
@@ -101,6 +99,7 @@ void radix_sort(int* arr, int N){
         max_digit++;
     }
 
+    // 자릿수만큼 돌면서 sorted 배열애 각 자릿수 기준으로 정렬 
     int digit = 1;
     int r = 0; 
     for(int i=0; i<max_digit; i++){
@@ -119,7 +118,53 @@ void radix_sort(int* arr, int N){
         r = 0;
         digit *=10;
     }
+}
+
+int partition(int* arr, int l, int r){
+    int x = arr[l];
+    int i = l;
+    int temp;
+    for(int j=l+1; j<=r; j++){
+        if(arr[j]<x){
+            i++;
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    temp = arr[l];
+    arr[l] = arr[i];
+    arr[i] = temp;
+    return i;
+}
+
+void quick_sort(int* arr, int l, int r){
+    if(l<r){
+        int mid = partition(arr, l, r);
+        quick_sort(arr, l, mid-1);
+        quick_sort(arr, mid+1, r);
+    }
+}
+
+void bucket_sort(int* arr, int N){
+    int num;
+    if (N<=1000) num = 50;
+    else if (N<=5000) num = 250;
+    else num = 500;
+    int** bucket = (int**)malloc(sizeof(int*) * num);
+    for(int i=0; i<num; i++){
+        arr[i] = (int*) malloc (sizeof(int) * N);
+    }
+
+    for(int i=0; i<N; i++){
+        
+    }
+}
+
+
     
+
+
 
 }
 
@@ -187,8 +232,28 @@ int main() {
     int w_radix_5000[5000];    copy_arr(w_arr_5000, w_radix_5000, 5000);
     int w_radix_10000[10000];  copy_arr(w_arr_10000, w_radix_10000, 10000);    
 
-    radix_sort(r_radix_1000, 1000);
-    compare_arr(r_arr_1000, r_radix_1000, 1000);
+        // radix_sort(r_radix_1000, 1000);
+        // compare_arr(r_arr_1000, r_radix_1000, 1000);
+
+
+    // Quick sort
+    int r_quick_1000[1000];    copy_arr(r_arr_1000, r_quick_1000, 1000);
+    int r_quick_5000[5000];    copy_arr(r_arr_5000, r_quick_5000, 5000);
+    int r_quick_10000[10000];  copy_arr(r_arr_10000, r_quick_10000, 10000);
+    int w_quick_1000[1000];    copy_arr(w_arr_1000, w_quick_1000, 1000);
+    int w_quick_5000[5000];    copy_arr(w_arr_5000, w_quick_5000, 5000);
+    int w_quick_10000[10000];  copy_arr(w_arr_10000, w_quick_10000, 10000);    
+
+        // quick_sort(r_quick_1000, 0, 1000);
+        // compare_arr(r_arr_1000, r_quick_1000, 1000);
+
+    // Bucket sort
+    int r_bucket_1000[1000];    copy_arr(r_arr_1000, r_bucket_1000, 1000);
+    int r_bucket_5000[5000];    copy_arr(r_arr_5000, r_bucket_5000, 5000);
+    int r_bucket_10000[10000];  copy_arr(r_arr_10000, r_bucket_10000, 10000);
+    int w_bucket_1000[1000];    copy_arr(w_arr_1000, w_bucket_1000, 1000);
+    int w_bucket_5000[5000];    copy_arr(w_arr_5000, w_bucket_5000, 5000);
+    int w_bucket_10000[10000];  copy_arr(w_arr_10000, w_bucket_10000, 10000);
 
 
 }
