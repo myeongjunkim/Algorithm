@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 int* get_random_arr(int N){
     srand(time(NULL));
@@ -80,7 +81,41 @@ void merge_sort(int* arr, int* sorted, int left, int right){
             }
             k++;
         }
+}
+
+
+
+void radix_sort(int* arr, int* sorted, int N){
+    // int digit=0, num=N-1;
+    // while(num!=0){
+    //     num /= 10;
+    //     digit++;
+    // }
     
+    
+
+    // for(int i=0; i<N; i++){
+    //     int target = arr[i];
+    //     int n = arr[i]%10
+    //     switch(target){
+    //         case
+    //     }
+
+    // }
+
+    // struct Node {
+    //     struct Node* next;
+    //     int data;
+    // };
+    // struct Node nodeList[10];
+
+    // for(int i=0; i<N; i++){
+    //     struct Node target_node = nodeList[arr[i]%10];
+    //     while(target_node.next){
+    //         target_node = target_node.next;
+    //     }
+    //     target_node.next = 
+    // }
 
 }
 
@@ -141,5 +176,6 @@ int main() {
 
 
     // Radix sort
-    
+
+
 }
