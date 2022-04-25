@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
@@ -147,26 +147,44 @@ void quick_sort(int* arr, int l, int r){
 }
 
 void bucket_sort(int* arr, int N){
-    int num;
-    if (N<=1000) num = 50;
-    else if (N<=5000) num = 250;
-    else num = 500;
-    int** bucket = (int**)malloc(sizeof(int*) * num);
-    for(int i=0; i<num; i++){
-        arr[i] = (int*) malloc (sizeof(int) * N);
+    int size;
+    if (N<=1000) size = 50;
+    else if (N<=5000) size = 250;
+    else size = 500;
+    int** bucket = (int**)malloc(sizeof(int*) * size);
+    for(int i=0; i<size; i++){
+        bucket[i] = (int*) malloc (sizeof(int) * N);
     }
 
+    // 구간별 평균 개수
+    int num = ceil(N/size);
+    int* bucket_top = malloc(sizeof(int) * size);
+    int b_index, top;
     for(int i=0; i<N; i++){
-        
+        b_index = floor(arr[i]/num);
+        top = bucket_top[b_index]; // top 관리(Bucket에 들어있는 총 개수)
+        bucket[b_index][top] = arr[i];
+        bucket_top[b_index]++;
     }
+
+    int total_index=0;
+    for(int i=0; i<size; i++){
+        insert_sort(bucket[i], bucket_top[i]);
+        for(int j=0; j<bucket_top[i]; j++){
+            arr[total_index+j] = bucket[i][j];
+        }
+        total_index += bucket_top[i];
+    }
+   
+
+
+
 }
 
 
-    
 
 
 
-}
 
 
 int main() {
@@ -255,5 +273,7 @@ int main() {
     int w_bucket_5000[5000];    copy_arr(w_arr_5000, w_bucket_5000, 5000);
     int w_bucket_10000[10000];  copy_arr(w_arr_10000, w_bucket_10000, 10000);
 
+    bucket_sort(r_bucket_1000, 1000);
+    compare_arr(r_arr_1000, r_bucket_1000, 1000);
 
 }
