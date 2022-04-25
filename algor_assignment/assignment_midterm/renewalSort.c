@@ -71,11 +71,7 @@ void merge_sort(int* arr, int left, int right){
     int mid = (left+right)/2;
     if(left<right){
         merge_sort(arr, left, mid);
-        for(int i=left; i<=mid; i++) printf("%d ", arr[i]);
-        printf("\n");
         merge_sort(arr, mid+1, right);
-        for(int i=mid+1; i<=right; i++) printf("%d ", arr[i]);
-        printf("\n");
     }
     int *sorted = (int*) malloc (sizeof(int) * (right-left+1));
     int i=left; int j=mid+1; int k=left;
@@ -187,32 +183,19 @@ void bucket_sort(int* arr, int N){
     }
 }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main() {
 
-    
-
-    // random arr gen
-    int* r_arr_1000 = get_random_arr(1000);
-    int* r_arr_5000 = get_random_arr(5000);
-    int* r_arr_10000 = get_random_arr(10000);
-
-    // worst arr gen
-    int* w_arr_1000 = get_worst_arr(1000);
-    int* w_arr_5000 = get_worst_arr(5000);
-    int* w_arr_10000 = get_worst_arr(10000);
-
-
     // 정렬이 필요한 origin arr 생성 
-    // int N[3] = {1000, 5000, 10000};
-    // int* test_arr_origin[6];
-    // for(int i=0; i<6; i++){
-    //     // 앞에 세개는 random 배열 1000, 5000, 10000
-    //     if (i<3) test_arr_origin[i] = get_random_arr(N[i%3]);
-    //     // 뒤에 세개는 worst 배열 1000, 5000, 10000
-    //     else test_arr_origin[i] = get_worst_arr(N[i%3]);
-    // }
+    int N[3] = {1000, 5000, 10000};
+    int* test_arr_origin[6];
+    for(int i=0; i<6; i++){
+        // 앞에 세개는 random 배열 1000, 5000, 10000
+        if (i<3) test_arr_origin[i] = get_random_arr(N[i%3]);
+        // 뒤에 세개는 worst 배열 1000, 5000, 10000
+        else test_arr_origin[i] = get_worst_arr(N[i%3]);
+    }
 
     // sort algorithm
     clock_t start;
@@ -220,76 +203,119 @@ int main() {
 
 
     // bubble sort
-    int r_bubble_1000[1000];    copy_arr(r_arr_1000, r_bubble_1000, 1000);
-    int r_bubble_5000[5000];    copy_arr(r_arr_5000, r_bubble_5000, 5000);
-    int r_bubble_10000[10000];  copy_arr(r_arr_10000, r_bubble_10000, 10000);
-    int w_bubble_1000[1000];    copy_arr(w_arr_1000, w_bubble_1000, 1000);
-    int w_bubble_5000[5000];    copy_arr(w_arr_5000, w_bubble_5000, 5000);
-    int w_bubble_10000[10000];  copy_arr(w_arr_10000, w_bubble_10000, 10000);
-    
 
-        // bubble_sort(w_bubble_1000, 1000);
-        // compare_arr(w_arr_1000, w_bubble_1000, 1000);
+    // bubble 테스트용 원본 복사
+    int** bubble_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        bubble_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], bubble_sorted_arr_list[i], N[i%3]);
+    }
+
+    double bubble_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        bubble_sort(bubble_sorted_arr_list[i], N[i%3]);
+        end = clock();
+        bubble_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    }
+    // compare_arr(test_arr_origin[0], bubble_sorted_arr_list[0], 1000);
 
 
     // insert sort
-    int r_insert_1000[1000];    copy_arr(r_arr_1000, r_insert_1000, 1000);
-    int r_insert_5000[5000];    copy_arr(r_arr_5000, r_insert_5000, 5000);
-    int r_insert_10000[10000];  copy_arr(r_arr_10000, r_insert_10000, 10000);
-    int w_insert_1000[1000];    copy_arr(w_arr_1000, w_insert_1000, 1000);
-    int w_insert_5000[5000];    copy_arr(w_arr_5000, w_insert_5000, 5000);
-    int w_insert_10000[10000];  copy_arr(w_arr_10000, w_insert_10000, 10000);
+    int** insert_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        insert_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], insert_sorted_arr_list[i], N[i%3]);
+    }
 
-        // insert_sort(r_insert_1000, 1000);
-        // compare_arr(r_arr_1000, r_insert_1000, 1000);
+    double insert_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        insert_sort(insert_sorted_arr_list[i], N[i%3]);
+        end = clock();
+        insert_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    }
+
 
 
     // merge sort
-    int r_merge_1000[1000];    copy_arr(r_arr_1000, r_merge_1000, 1000);
-    int r_merge_5000[5000];    copy_arr(r_arr_5000, r_merge_5000, 5000);
-    int r_merge_10000[10000];  copy_arr(r_arr_10000, r_merge_10000, 10000);
-    int w_merge_1000[1000];    copy_arr(w_arr_1000, w_merge_1000, 1000);
-    int w_merge_5000[5000];    copy_arr(w_arr_5000, w_merge_5000, 5000);
-    int w_merge_10000[10000];  copy_arr(w_arr_10000, w_merge_10000, 10000);
+    int** merge_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        merge_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], merge_sorted_arr_list[i], N[i%3]);
+    }
 
-    printf("머지소트 확인\n");
-        int merge_sorted[1000];
-        merge_sort(r_arr_1000, merge_sorted, 0, 999);
-        compare_arr(r_arr_1000, merge_sorted, 1000);
+    double merge_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        merge_sort(merge_sorted_arr_list[i],0, N[i%3]-1);
+        end = clock();
+        merge_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    }
+    // compare_arr(test_arr_origin[0], merge_sorted_arr_list[0], 1000);
 
 
     // Radix sort
-    int r_radix_1000[1000];    copy_arr(r_arr_1000, r_radix_1000, 1000);
-    int r_radix_5000[5000];    copy_arr(r_arr_5000, r_radix_5000, 5000);
-    int r_radix_10000[10000];  copy_arr(r_arr_10000, r_radix_10000, 10000);
-    int w_radix_1000[1000];    copy_arr(w_arr_1000, w_radix_1000, 1000);
-    int w_radix_5000[5000];    copy_arr(w_arr_5000, w_radix_5000, 5000);
-    int w_radix_10000[10000];  copy_arr(w_arr_10000, w_radix_10000, 10000);    
+    int** radix_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        radix_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], radix_sorted_arr_list[i], N[i%3]);
+    }
 
-        // radix_sort(r_radix_1000, 1000);
-        // compare_arr(r_arr_1000, r_radix_1000, 1000);
+    double radix_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        radix_sort(radix_sorted_arr_list[i], N[i%3]);
+        end = clock();
+        radix_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    }
+    // compare_arr(test_arr_origin[0], radix_sorted_arr_list[0], 1000);
 
 
     // Quick sort
-    int r_quick_1000[1000];    copy_arr(r_arr_1000, r_quick_1000, 1000);
-    int r_quick_5000[5000];    copy_arr(r_arr_5000, r_quick_5000, 5000);
-    int r_quick_10000[10000];  copy_arr(r_arr_10000, r_quick_10000, 10000);
-    int w_quick_1000[1000];    copy_arr(w_arr_1000, w_quick_1000, 1000);
-    int w_quick_5000[5000];    copy_arr(w_arr_5000, w_quick_5000, 5000);
-    int w_quick_10000[10000];  copy_arr(w_arr_10000, w_quick_10000, 10000);    
+    int** quick_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        quick_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], quick_sorted_arr_list[i], N[i%3]);
+    }
 
-        // quick_sort(r_quick_1000, 0, 1000);
-        // compare_arr(r_arr_1000, r_quick_1000, 1000);
+    double quick_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        quick_sort(quick_sorted_arr_list[i],0, N[i%3]-1);
+        end = clock();
+        quick_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    } 
+    // compare_arr(test_arr_origin[0], quick_sorted_arr_list[0], 1000);
+
+
 
     // Bucket sort
-    int r_bucket_1000[1000];    copy_arr(r_arr_1000, r_bucket_1000, 1000);
-    int r_bucket_5000[5000];    copy_arr(r_arr_5000, r_bucket_5000, 5000);
-    int r_bucket_10000[10000];  copy_arr(r_arr_10000, r_bucket_10000, 10000);
-    int w_bucket_1000[1000];    copy_arr(w_arr_1000, w_bucket_1000, 1000);
-    int w_bucket_5000[5000];    copy_arr(w_arr_5000, w_bucket_5000, 5000);
-    int w_bucket_10000[10000];  copy_arr(w_arr_10000, w_bucket_10000, 10000);
+    int** bucket_sorted_arr_list = (int**)malloc(sizeof(int*) * 6);
+    for(int i=0; i<6; i++){
+        bucket_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
+        copy_arr(test_arr_origin[i], bucket_sorted_arr_list[i], N[i%3]);
+    }
 
-    // bucket_sort(r_bucket_1000, 1000);
-    // compare_arr(r_arr_1000, r_bucket_1000, 1000);
+    double bucket_result[6];
+    for(int i=0; i<6; i++){
+        start = clock();
+        bucket_sort(bucket_sorted_arr_list[i], N[i%3]);
+        end = clock();
+        bucket_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
+    } 
+    // compare_arr(test_arr_origin[0], bucket_sorted_arr_list[0], 1000);
+
+    printf("\n<Total algorithm speed>\n");
+
+    for(int i=0; i<6; i++){
+        printf("\n[case%d]\n\n",i);
+        printf("bubble : %f\n", bubble_result[i]);
+        printf("insert : %f\n", insert_result[i]);
+        printf("merge : %f\n", merge_result[i]);
+        printf("radix : %f\n", radix_result[i]);
+        printf("quick : %f\n", quick_result[i]);
+        printf("bucket : %f\n", bucket_result[i]);
+    }
 
 }
