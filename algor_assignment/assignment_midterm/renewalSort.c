@@ -27,20 +27,28 @@ void copy_arr(int* arr, int* copy_arr, int n) {
 	}
 }
 
+void compare_arr(char* sort_type, int* arr, int* arr2, int N){
+    printf("\n\n%15s before and after ex(random input 1000)\n\n", sort_type);
+    for(int i=0; i<5; i++){
+        printf("%5d번째 : %5d -> %5d\n", i, arr[i], arr2[i]);
+    }
+    printf("    ...\n\n");
+    for(int i=N/2; i<N/2+5; i++){
+        printf("%5d번째 : %5d -> %5d\n", i, arr[i], arr2[i]);
+    }
+    printf("    ...\n\n");
+    for(int i=N-5; i<N; i++){
+        printf("%5d번째 : %5d -> %5d\n", i, arr[i], arr2[i]);
+    }
+
+}
+
 void print_arr(int* arr, int N){
     printf("배열 출력\n\n");
     for(int i=0; i<N; i++){
         printf("%d번째 : %d\n", i, arr[i]);
     }
 }
-
-void compare_arr(int* arr, int* arr2, int N){
-    printf("\nprint before and after\n\n");
-    for(int i=0; i<N; i++){
-        printf("%5d번째 : %5d -> %5d\n", i, arr[i], arr2[i]);
-    }
-}
-
 
 // sort algorithm
 void bubble_sort(int* arr, int N){
@@ -210,7 +218,7 @@ int main() {
         bubble_sorted_arr_list[i] = (int*) malloc (sizeof(int) * N[i%3]);
         copy_arr(test_arr_origin[i], bubble_sorted_arr_list[i], N[i%3]);
     }
-
+    // 여섯개 케이스를 버블 정렬
     double bubble_result[6];
     for(int i=0; i<6; i++){
         start = clock();
@@ -218,7 +226,7 @@ int main() {
         end = clock();
         bubble_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     }
-    // compare_arr(test_arr_origin[0], bubble_sorted_arr_list[0], 1000);
+    compare_arr("bubble sort", test_arr_origin[0], bubble_sorted_arr_list[0], 1000);
 
 
     // insert sort
@@ -235,6 +243,8 @@ int main() {
         end = clock();
         insert_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     }
+    compare_arr("insert sort", test_arr_origin[0], insert_sorted_arr_list[0], 1000);
+
 
 
 
@@ -252,7 +262,7 @@ int main() {
         end = clock();
         merge_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     }
-    // compare_arr(test_arr_origin[0], merge_sorted_arr_list[0], 1000);
+    compare_arr("merge sort", test_arr_origin[0], merge_sorted_arr_list[0], 1000);
 
 
     // Radix sort
@@ -269,7 +279,7 @@ int main() {
         end = clock();
         radix_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     }
-    // compare_arr(test_arr_origin[0], radix_sorted_arr_list[0], 1000);
+    compare_arr("radix sort", test_arr_origin[0], radix_sorted_arr_list[0], 1000);
 
 
     // Quick sort
@@ -286,8 +296,7 @@ int main() {
         end = clock();
         quick_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     } 
-    // compare_arr(test_arr_origin[0], quick_sorted_arr_list[0], 1000);
-
+    compare_arr("quick sort", test_arr_origin[0], quick_sorted_arr_list[0], 1000);
 
 
     // Bucket sort
@@ -304,18 +313,36 @@ int main() {
         end = clock();
         bucket_result[i] = (double)(end-start)/CLOCKS_PER_SEC;
     } 
-    // compare_arr(test_arr_origin[0], bucket_sorted_arr_list[0], 1000);
+    compare_arr("bucket sort", test_arr_origin[0], bucket_sorted_arr_list[0], 1000);
 
-    printf("\n<Total algorithm speed>\n");
 
+    // print result
+    char* input_type[6] = {"random input 1000", "random input 5000", "random input 10000", "worst input 1000", "worst input 5000", "worst input 10000"};
+    char* sort_type[6] = {"bubble sort", "insert sort", "merge sort","radix sort","quick sort", "bucket sort"};
+    
+    printf("\n<Total algorithm speeds>\n\n");
+
+    // printf("                        bubble sort  insert sort  merge sort  radix sort  quick sort  bucket sort\n");
+    printf("                      %12s  %12s  %12s  %12s  %12s  %12s\n",
+            sort_type[0], sort_type[1], sort_type[2], sort_type[3], sort_type[4], sort_type[5]);
+    printf("---------------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<6; i++){
-        printf("\n[case%d]\n\n",i);
-        printf("bubble : %f\n", bubble_result[i]);
-        printf("insert : %f\n", insert_result[i]);
-        printf("merge : %f\n", merge_result[i]);
-        printf("radix : %f\n", radix_result[i]);
-        printf("quick : %f\n", quick_result[i]);
-        printf("bucket : %f\n", bucket_result[i]);
+        printf("%20s  %12f  %12f  %12f  %12f  %12f  %12f\n\n",
+        input_type[i], bubble_result[i], insert_result[i], merge_result[i], radix_result[i], quick_result[i], bucket_result[i]);
     }
+    printf("\n");
+    
 
+
+    // for(int i=0; i<6; i++){
+    //     if (i<3) printf("\n[random case %d]\n\n",i%3);
+    //     else printf("\n[worst case %d]\n\n",i%3);
+    //     printf("bubble : %f\n", bubble_result[i]);
+    //     printf("insert : %f\n", insert_result[i]);
+    //     printf("merge  : %f\n", merge_result[i]);
+    //     printf("radix  : %f\n", radix_result[i]);
+    //     printf("quick  : %f\n", quick_result[i]);
+    //     printf("bucket : %f\n", bucket_result[i]);
+    //     printf("\n");
+    // }
 }
