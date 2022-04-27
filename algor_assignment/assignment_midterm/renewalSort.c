@@ -321,8 +321,6 @@ int main() {
     char* sort_type[6] = {"bubble sort", "insert sort", "merge sort","radix sort","quick sort", "bucket sort"};
     
     printf("\n<Total algorithm speeds>\n\n");
-
-    // printf("                        bubble sort  insert sort  merge sort  radix sort  quick sort  bucket sort\n");
     printf("                      %12s  %12s  %12s  %12s  %12s  %12s\n",
             sort_type[0], sort_type[1], sort_type[2], sort_type[3], sort_type[4], sort_type[5]);
     printf("---------------------------------------------------------------------------------------------------------\n");
@@ -333,16 +331,4 @@ int main() {
     printf("\n");
     
 
-
-    // for(int i=0; i<6; i++){
-    //     if (i<3) printf("\n[random case %d]\n\n",i%3);
-    //     else printf("\n[worst case %d]\n\n",i%3);
-    //     printf("bubble : %f\n", bubble_result[i]);
-    //     printf("insert : %f\n", insert_result[i]);
-    //     printf("merge  : %f\n", merge_result[i]);
-    //     printf("radix  : %f\n", radix_result[i]);
-    //     printf("quick  : %f\n", quick_result[i]);
-    //     printf("bucket : %f\n", bucket_result[i]);
-    //     printf("\n");
-    // }
 }
