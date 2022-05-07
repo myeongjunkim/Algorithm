@@ -37,3 +37,5 @@ function solution(s) {
  
     return Math.min(...caseLen);
 }
+
+console.log(solution("aaaaabb"))
