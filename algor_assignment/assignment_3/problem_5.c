@@ -44,22 +44,78 @@ void insert_node(Tree* T, Node* node){
     Node* pre_node = T->head;
     Node* pos_node = T->head;
     while(1){
+        // 왼쪽
         if(node->data < pos_node->data){
             if(pos_node->left == NULL){
                 pos_node->left = node;
-                // // 시작
-                // if(pos_node->color == 'r'){
+                // 문제 시작
+                if(pos_node->color == 'r'){
+                    
+                    if(pre_node->left == pos_node){
+                        // LL인 상황
+                        if(pre_node->right == NULL || pre_node->right->color == 'b'){
+                            // 회전!!
+                            printf("");
+                        } else{
+                            // 색변환
+                            pos_node->color = 'b';
+                            pre_node->right->color = 'b';
+                            if(pre_node != T->head) pre_node->color= 'r';
+                        }
+                    } else {
+                        // RL인 상황
+                        if(pre_node->left == NULL || pre_node->left->color == 'b'){
+                            // 회전!!
+                            printf("");
+                        } else{
+                            pos_node->color = 'b';
+                            pre_node->left->color = 'b';
+                            if(pre_node != T->head) pre_node->color= 'r';
+                        }
 
-                // }
+                    }
+                    
+                }
                 break;
             }
             else{
                 pre_node = pos_node;
                 pos_node = pos_node->left;
             }
+        // 오른쪽
         } else {
             if(pos_node->right == NULL){
                 pos_node->right = node;
+
+                // 문제 시작
+                if(pos_node->color == 'r'){
+                    
+                    if(pre_node->left == pos_node){
+                        // LR인 상황
+                        if(pre_node->right == NULL || pre_node->right->color == 'b'){
+                            // 회전!!
+                            printf("");
+                        } else{
+                            // 색변환
+                            pos_node->color = 'b';
+                            pre_node->right->color = 'b';
+                            if(pre_node != T->head) pre_node->color= 'r';
+                        }
+                    } else {
+                        // RR인 상황
+                        if(pre_node->left == NULL || pre_node->left->color == 'b'){
+                            // 회전!!
+                            printf("");
+                        } else{
+                            pos_node->color = 'b';
+                            pre_node->left->color = 'b';
+                            if(pre_node != T->head) pre_node->color= 'r';
+                        }
+
+                    }
+                    
+                }
+
                 break;
             } 
             else{
