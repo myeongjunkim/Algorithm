@@ -23,25 +23,33 @@ Node traverse_node(LinkedList* L, int index){
     return index_node;
 }
 
-void append_node(LinkedList* L, Node* node){
+void append_node(LinkedList* L, int n){
+    Node* new_node = malloc(sizeof(Node));
+    new_node->data = n;
+    new_node->next = NULL;
+    
     Node* pos_node = (*L).head;
     while(pos_node->next != NULL){
         pos_node = pos_node->next;
     }
-    pos_node->next = node;
+    pos_node->next = new_node;
     L->size++;
 }
 
-void insert_node(LinkedList* L, int index, Node* node){
+void insert_node(LinkedList* L, int index, int n){
     if (L->size < index){
         printf("index out of range\n");
     } else{
+        Node* new_node = malloc(sizeof(Node));
+        new_node->data = n;
+        new_node->next = NULL;
+
         Node* pre_node = (*L).head;
         for(int i=0; i<index; i++){
             pre_node = pre_node->next;
         }
-        node->next = pre_node->next;
-        pre_node->next = node;
+        new_node->next = pre_node->next;
+        pre_node->next = new_node;
         L->size++;
     }
 }
@@ -97,19 +105,15 @@ int main(){
     linked_list.head = head;
 
     for(int i=0; i<10; i++){
-        Node* new_node = malloc(sizeof(Node));
-        new_node->data = i;
+        
         // rand()%10
-        new_node->next = NULL;
-
-        append_node(&linked_list, new_node);
+        append_node(&linked_list, i);
     }
 
 
-    Node* new_node = malloc(sizeof(Node));
-    new_node->data = 12334;
+    
 
-    // insert_node(&linked_list,0, new_node);
+    insert_node(&linked_list,5, 12344);
 
     
     
