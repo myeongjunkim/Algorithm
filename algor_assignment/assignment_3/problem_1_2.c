@@ -12,7 +12,7 @@ typedef struct LinkedList {
     int size;
 } LinkedList;
 
-Node traverse_node(LinkedList* L, int index){
+Node get_node(LinkedList* L, int index){
     
     Node* pre_node = (*L).head;
     for(int i=0; i<index; i++){
@@ -63,8 +63,8 @@ void remove_node(LinkedList* L, int index){
             pre_node = pre_node->next;
         }
         Node* temp = pre_node->next;
-        pre_node->next = pre_node->next->next;
-        free(temp); 
+        pre_node->next = temp->next;
+        // free(temp); 
         L->size--;
     }
 }
@@ -82,7 +82,48 @@ void reverse_list(LinkedList* L){
     }
     L->head->next = pos_node;
     free(temp);
-}    
+}
+
+void check_duplicates(LinkedList* L){
+    Node* pos_node = (*L).head->next;
+    Node* check_node = malloc(sizeof(Node));
+
+    int i=0;
+    while(pos_node->next != NULL){
+        check_node = pos_node->next;
+        int j = i+1;
+        while(check_node !=NULL){
+            if(pos_node->data == check_node->data){
+                printf("index[%d] is duplicated with index[%d] (value : %d)\n", i, j,pos_node->data);
+            }
+            check_node = check_node->next;
+            j++;
+        }
+        pos_node = pos_node->next;
+        i++;
+    }
+}
+
+void delete_duplicates(LinkedList* L){
+    Node* pos_node = (*L).head->next;
+    Node* check_node = malloc(sizeof(Node));
+
+    int i=0;
+    while(pos_node->next != NULL){
+        check_node = pos_node->next;
+        int j = i+1;
+        while(check_node !=NULL){
+            if(pos_node->data == check_node->data){
+                printf("%d is duplicated\n", pos_node->data);
+                remove_node(L, j--);
+            }
+            check_node = check_node->next;
+            j++;
+        }
+        pos_node = pos_node->next;
+        i++;
+    }
+}
 
 void print_list(LinkedList* L){
     Node* pos_node = L->head;
@@ -105,39 +146,31 @@ int main(){
     linked_list.head = head;
 
     for(int i=0; i<10; i++){
-        
-        // rand()%10
-        append_node(&linked_list, i);
+        append_node(&linked_list, rand()%10);
     }
 
 
     
 
-    insert_node(&linked_list,5, 12344);
+    // insert_node(&linked_list,5, 12344);
 
-    
-    
-    print_list(&linked_list);
     // printf("traverse : %d\n", traverse_node(&linked_list,9).data);
     // printf("%d\n", linked_list.size);
 
-    reverse_list(&linked_list);
+    // reverse_list(&linked_list);
 
-    printf("reversed\n");
+    // printf("reversed\n");
+    // print_list(&linked_list);
+
+    print_list(&linked_list);
+
+    // check_duplicates(&linked_list);
+
+    delete_duplicates(&linked_list);
+
     print_list(&linked_list);
 
 
-
-
-    // remove_node(&linked_list, 4);
-    // print_list(&linked_list);
-    
-    // printf("%d\n", linked_list.size);
-
-
-
-
-    
 
 
 
