@@ -100,7 +100,7 @@ void insert_node(Tree* T, Node* node){
                 pos_node->left = node;
                 // 문제 시작
                 if(pos_node->color == 'r'){
-                    if(pre_node->left == pos_node){
+                        if(pre_node->left == pos_node){
                         // LL인 상황
                         if(pre_node->right == NULL || pre_node->right->color == 'b'){
                             // 회전!!
@@ -128,88 +128,3 @@ void insert_node(Tree* T, Node* node){
                 break;
             }
             else{
-                pre_node = pos_node;
-                pos_node = pos_node->left;
-            }
-        // 오른쪽
-        } else {
-            if(pos_node->right == NULL){
-                pos_node->right = node;
-                // 문제 시작
-                if(pos_node->color == 'r'){
-                    if(pre_node->left == pos_node){
-                        // LR인 상황
-                        // printf("lr\n");
-                        if(pre_node->right == NULL || pre_node->right->color == 'b'){
-                            // 회전!!
-                            l_rotation(T, pos_node);
-                            r_rotation(T, pre_node);
-                        } else{
-                            // 색변환
-                            pos_node->color = 'b';
-                            pre_node->right->color = 'b';
-                            if(pre_node != T->head->left) pre_node->color= 'r';
-                        }
-                    } else {
-                        // RR인 상황
-                        // printf("rr\n");
-                        if(pre_node->left == NULL || pre_node->left->color == 'b'){
-                            // 회전!!
-                            l_rotation(T, pre_node);
-                        } else{
-                            pos_node->color = 'b';
-                            pre_node->left->color = 'b';
-                            if(pre_node != T->head->left) pre_node->color= 'r';
-                        }
-                    }
-                }
-                break;
-            } 
-            else{
-                pre_node = pos_node;
-                pos_node = pos_node->right;
-            } 
-        }
-        
-    }   
-}
-
-void make_rbTree(Tree* T, int arr[], int N){
-    
-    Node* head_node = malloc(sizeof(Node));
-    head_node->data = arr[0];
-    head_node->color = 'b';
-    T->head = malloc(sizeof(Node));
-    T->head->left = head_node;
-
-    for(int i=1; i<N; i++){
-        Node* new_node = malloc(sizeof(Node));
-        new_node->data = arr[i];
-        new_node->color = 'r';
-
-        insert_node(T, new_node);
-    }
-}
-
-int main(){
-    
-    Tree* T = malloc(sizeof(Tree));
-    int arr[] = {41, 38, 31, 12, 19, 8};
-    int N = sizeof(arr)/sizeof(int);
-
-    make_rbTree(T, arr, N);
-
-    printf("\n");
-    printf("<preorder>\n");
-    preorder(T->head->left);
-    printf("\n\n");
-    
-    printf("<inorder>\n");
-    inorder(T->head->left);
-    printf("\n\n");
-
-    printf("<postorder>\n");
-    postorder(T->head->left);
-    printf("\n\n");
-    
-}
