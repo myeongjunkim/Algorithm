@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -84,48 +85,7 @@ void reverse_list(LinkedList* L){
     free(temp);
 }
 
-void check_duplicates(LinkedList* L){
-    Node* pos_node = (*L).head->next;
-    Node* check_node = malloc(sizeof(Node));
-
-    int i=0;
-    while(pos_node->next != NULL){
-        check_node = pos_node->next;
-        int j = i+1;
-        while(check_node !=NULL){
-            if(pos_node->data == check_node->data){
-                printf("index[%d] is duplicated with index[%d] (value : %d)\n", i, j,pos_node->data);
-            }
-            check_node = check_node->next;
-            j++;
-        }
-        pos_node = pos_node->next;
-        i++;
-    }
-}
-
-void delete_duplicates(LinkedList* L){
-    Node* pos_node = (*L).head->next;
-    Node* check_node = malloc(sizeof(Node));
-
-    int i=0;
-    while(pos_node->next != NULL){
-        check_node = pos_node->next;
-        int j = i+1;
-        while(check_node !=NULL){
-            if(pos_node->data == check_node->data){
-                printf("%d is duplicated\n", pos_node->data);
-                remove_node(L, j--);
-            }
-            check_node = check_node->next;
-            j++;
-        }
-        pos_node = pos_node->next;
-        i++;
-    }
-}
-
-void print_list(LinkedList* L){
+void traverse_list(LinkedList* L){
     Node* pos_node = L->head;
     while(pos_node->next != NULL){
         pos_node = pos_node->next;
@@ -133,7 +93,6 @@ void print_list(LinkedList* L){
     }
     printf("\n");
 }
-
 
 int main(){
 
@@ -149,30 +108,27 @@ int main(){
         append_node(&linked_list, rand()%10);
     }
 
+    printf("\n[Generate a linked list of size 10 whose elements are chosen randomly]\n");
+    traverse_list(&linked_list);
 
-    
-
-    // insert_node(&linked_list,5, 12344);
-
-    // printf("traverse : %d\n", traverse_node(&linked_list,9).data);
-    // printf("%d\n", linked_list.size);
-
-    // reverse_list(&linked_list);
-
-    // printf("reversed\n");
-    // print_list(&linked_list);
-
-    print_list(&linked_list);
-
-    // check_duplicates(&linked_list);
-
-    delete_duplicates(&linked_list);
-
-    print_list(&linked_list);
+    printf("\nappend_node(&linked_list, 99999)\n");
+    append_node(&linked_list, 99999);
+    traverse_list(&linked_list);
 
 
+    printf("\ninsert_node(&linked_list, 2, 10000)\n");
+    insert_node(&linked_list, 2, 1000);
+    traverse_list(&linked_list);
 
+    printf("\nremove_node(&linked_list, 2)\n");
+    remove_node(&linked_list, 2);
+    traverse_list(&linked_list);
 
+    printf("\nreverse_list(&linked_list)\n");
+    reverse_list(&linked_list);
+    traverse_list(&linked_list);
+
+    printf("\n");
 
 }
 

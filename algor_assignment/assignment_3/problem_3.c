@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 int main(){
@@ -20,8 +21,6 @@ int main(){
             }
         }
     }
-    if(flag) printf("\nbinary search tree O\n");
-    else printf("\nbinary search tree X\n");
-
-
+    if(flag) printf("\nbinary search tree O\n\n");
+    else printf("\nbinary search tree X\n\n");
 }
