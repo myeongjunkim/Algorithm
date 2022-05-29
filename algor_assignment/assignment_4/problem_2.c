@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -124,6 +125,7 @@ int main(){
     // dp, k_index 구하기
     int computations_n = matrix_product_dp(size, N, dp, k_index);
 
+    printf("\n< optimal chain order >\n");
     // 순서에 맞게 주어진 k_index를 활용하여 행렬 곱셈
     int** result_arr = optimal_product(matrix, k_index, size, 1, N);
 

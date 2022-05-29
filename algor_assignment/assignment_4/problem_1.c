@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,6 +25,6 @@ int fibo_dp(int N){
 
 
 int main(){
-    printf("n = 5  -> %d\n", fibo_dp(5));
-    printf("n = 10 -> %d\n", fibo_dp(10));
+    printf("\nn = 5  -> %d\n", fibo_dp(5));
+    printf("n = 10 -> %d\n\n", fibo_dp(10));
 }
