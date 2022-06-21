@@ -97,17 +97,13 @@ int main() {
     }
 
     printf("y route : ");
-    for(int i=y_size-1; i>=0; i--) printf("%d ", y_route[i]);
+    for(int i=y_size-1; i>=0; i--) printf("%c ", c_node[y_route[i]]);
     printf(" // [s - y] costs : %d", distance[3]);
     printf("\n");
 
     printf("z route : ");
-    for(int i=z_size-1; i>=0; i--) printf("%d ", z_route[i]);
+    for(int i=z_size-1; i>=0; i--) printf("%c ", c_node[z_route[i]]);
     printf(" // [s - z] costs : %d", distance[4]);
     printf("\n");
-
-    
-
-
 
 }

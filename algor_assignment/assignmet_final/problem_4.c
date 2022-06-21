@@ -4,11 +4,6 @@
 
 #define MAX_SIZE 5
 
-// typedef struct {
-//     int start;
-//     int end;
-//     int w;
-// } Line;
 
 typedef struct {
     int pre_node;
@@ -56,10 +51,7 @@ int BellmanFord(int gragh[][MAX_SIZE], int n_source){
             }
         }
     }
-
     return 1;
-
-
 }
 
 
@@ -75,15 +67,6 @@ int main(){
         {INT_MAX,INT_MAX,-3,0,9}, // y ->3
         {2,INT_MAX,4,INT_MAX,0}, // z ->4        
     };
-
-    // int gragh[][MAX_SIZE]={
-    //    //s t x y z
-    //     {0,6,INT_MAX,7,INT_MAX}, // s ->0
-    //     {INT_MAX,0,5,8,-4}, // t ->1
-    //     {INT_MAX,-2,0,INT_MAX,INT_MAX}, // x ->2
-    //     {INT_MAX,INT_MAX,-3,0,9}, // y ->3
-    //     {2,INT_MAX,7,INT_MAX,0}, // z ->4        
-    // };
 
     if(BellmanFord(gragh, 0)) printf("result : <True>\n");
     else printf("result : <False>\n");
