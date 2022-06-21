@@ -8,7 +8,7 @@ typedef struct {
     int d_source;
     int pre_node;
     int visited;
-}Node;
+} Node;
 
 typedef struct {
     // Node data[MAX_QUEUE_SIZE];   // 노드 번호
@@ -16,7 +16,7 @@ typedef struct {
     int rear, front;
     // rear은 마지막 인덱스
     // front는 처음 바로 왼쪽, 애초에 인덱스 1 부터 넣는다
-}Deque;
+} Deque;
 
 int q_is_empty(Deque *q){
 	return ( q->front == q->rear );
