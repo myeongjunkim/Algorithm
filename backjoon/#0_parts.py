@@ -20,6 +20,17 @@ queue.extend([1,2,3])
 queue.extendleft([1,2,3])
 deque.remove(1)
 
+
+from queue import PriorityQueue
+Q = PriorityQueue()
+# 원소 삽입
+Q.put(데이터)
+Q.put((우선순위, 데이터))
+# 원소 삭제 - 우선순위 높은 순서대로 삭제
+Q.get() 
+Q.get()[1]
+
+
 # 람다 정렬
 points= sorted(points, key = lambda x : (x[1],x[0]))
 
