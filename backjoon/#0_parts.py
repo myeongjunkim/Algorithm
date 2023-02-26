@@ -69,3 +69,10 @@ print(list(combinations_with_replacement([1,2,3,4], 2)))
 
 
 
+# 문자열 판단
+str.isdigit()
+str.isalpha()
+str.upper()
+str.lower()
+str.isupper()
+str.islower()
