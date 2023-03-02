@@ -76,3 +76,10 @@ str.upper()
 str.lower()
 str.isupper()
 str.islower()
+
+
+# 집합
+a={1,2,3}
+a.remove(2)
+a.discard(3)
+a.add(1)
