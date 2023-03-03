@@ -41,6 +41,6 @@ def is_target(m):
     else:
         return -1
 
-
+print("%2f")
 
 print(find_l(1,long_rice))
