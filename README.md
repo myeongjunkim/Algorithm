@@ -28,9 +28,8 @@
 
 ## Python 입출력
 
-1. 리스트 입력
+1.  N*M 입력
 
-    Case 1. N*M 타입
     ```
     3
     1 2 3
@@ -40,7 +39,7 @@
     MAP = [list(map(int, input().split())) for _ in range(int(input()))]
     ```
 
-    Case 2. N - numlist 타입
+2. N - numlist 입력
     ```
     4 10 20 30 40
     3 7 5 12
@@ -49,7 +48,7 @@
     N, *arr = map(int, input().split())
     ```
     
-    Case 3. 문자열 타입
+3. 문자열 입력
     ```
     3
     AAAA 
@@ -60,7 +59,7 @@
     ```
 
 
-2. 리스트 출력
+4. 리스트 출력
 
     ```
     arr = [1, 2, 3, 4] 
