@@ -7,7 +7,7 @@
     ```
     import sys
 
-    input=sys.stdin.readlines
+    input=sys.stdin.readline
     ```
 
 2. recursion 셋팅
