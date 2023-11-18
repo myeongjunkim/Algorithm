@@ -159,6 +159,9 @@
     
     queue.pop()
     queue.popleft()
+
+    queue.rotate(1)
+    queue.rotate(-1)
     
     queue.extend([1,2,3])
     queue.extendleft([1,2,3])
