@@ -144,6 +144,13 @@
     a.remove(2)
     a.discard(3)
     a.add(1)
+    set1 & set2
+    set1 | set2
+
+
+    line = "hello"
+    set_line = set(line) 
+    -> {'e', 'h', 'l', 'o'}
     ```
 
 2. 큐
