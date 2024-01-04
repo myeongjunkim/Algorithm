@@ -133,6 +133,18 @@
         return result
     ```
 
+6. enumerate
+
+    ```
+    item = ["First", "Second", "Third"] 
+    for i, val in enumerate(item): 
+    	print(f"{i} 번쨰 값은 {val}입니다") 
+
+
+    0 번쨰 값은 First입니다 
+    1 번쨰 값은 Second입니다 
+    2 번쨰 값은 Third입니다 
+    ```
 
 ## Python 자료구조
 
