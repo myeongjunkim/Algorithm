@@ -146,6 +146,33 @@
     2 번쨰 값은 Third입니다 
     ```
 
+7. bisect 이진 탐색
+
+    ```
+    from bisect import bisect_right, bisect_left
+
+    lst= [1, 4, 6, 10]
+    
+    print(bisect_left(lst, 6)) # result = 2
+    print(bisect_right(lst , 6)) # result = 3
+        
+    print(bisect_left(lst, 9)) # result = 3
+    print(bisect_right(lst , 9)) # result = 3
+
+    1. 해당 값이 리스트에 있을 때
+    
+    bisect_left - 해당 index 반환
+    bisect_right - 해당 index+1 반환
+    
+
+    2. 해당 값이 리스트에 없을 때
+    
+    bisect_left - 리스트 오름차순에 들어갈 index 반환
+    bisect_right - 리스트 오름차순에 들어갈 index 반환
+
+    ```
+
+
 ## Python 자료구조
 
 1. 집합
