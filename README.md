@@ -82,6 +82,9 @@
     str.islower()
     str.upper()
     str.lower()
+
+    str.find(sub_string)
+        -> KMP 문자열 검색 알고리즘
     ```
 
 
