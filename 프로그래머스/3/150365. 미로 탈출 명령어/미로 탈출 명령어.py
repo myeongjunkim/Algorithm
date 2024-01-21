@@ -1,6 +1,9 @@
 # 2023 KAKAO BLIND RECRUITMENT
 
 from collections import deque
+import sys
+
+sys.setrecursionlimit(10**7)
 
 """
 조건:
@@ -26,10 +29,11 @@ min_route = "impossible"
 
 
 def solution(n, m, x, y, r, c, k):
-    
+    global min_route
     pos, goal = (x,y), (r, c)
-    bfs_sol = bfs(n, m, pos, goal, k)
-    return bfs_sol
+    # min_route = bfs(n, m, pos, goal, k)
+    dfs(n, m, pos, "", goal, k)
+    return min_route
 
 
 def bfs(n, m, start, goal, k):
@@ -64,22 +68,16 @@ def bfs(n, m, start, goal, k):
             
     return "impossible"       
                 
-def dfs(n, m, pos, goal, distance, pre_node, k):    
-    global min_route
-    pos_r, pos_c = pos
     
-    if distance[pos_r][pos_c] > k or min_route != "impossible":
+def dfs(n, m, pos, path, goal, k):    
+    global min_route
+    pos_r, pos_c, = pos
+    
+    if min_route != "impossible":
         return
-    if distance[pos_r][pos_c] == k:
+    if len(path) == k:
         if pos == goal:
-            
-            result = ""
-            for i in range(k):
-                pre_r, pre_c, direct = pre_node[pos_r][pos_c]
-                result = result + direct
-                pos_r, pos_c = pre_r, pre_c
-                
-            min_route = result[::-1]
+            min_route = path
         return
     
     dr = [1, 0, 0, -1]
@@ -89,14 +87,19 @@ def dfs(n, m, pos, goal, distance, pre_node, k):
     for i in range(4):
         new_r = pos_r + dr[i]
         new_c = pos_c + dc[i]
-        
-        if 1<=new_r<=n and 1<=new_c<=m: 
-            new_pos = (new_r, new_c)
-            distance[new_r][new_c] = distance[pos_r][pos_c]+1
-            pre_node[new_r][new_c] = (pos_r, pos_c, direct[i])
-            dfs(n, m, new_pos, goal,distance, pre_node, k)
-    
+        new_path = path + direct[i]
+        new_distance = abs(new_r-goal[0]) + abs(new_c-goal[1])
 
+        if len(new_path) > k:
+            return
+        if 1>new_r or n<new_r or 1>new_c or m<new_c:
+            continue
+        if k-len(path) < new_distance:
+            continue
+        
+        dfs(n, m, (new_r, new_c), new_path, goal, k)
+        break
+        
     
 def minimum_route(n, m, x, y, r, c, k):
     
@@ -125,12 +128,12 @@ def minimum_route(n, m, x, y, r, c, k):
         if n%2 != 0:
             return "impossible"
 
-        route = "d" + route + "u"
-        route = "r" + route + "l"
-        route = "l" + route + "r"
+#         route = "d" + route + "u"
+#         route = "r" + route + "l"
+#         route = "l" + route + "r"
         
-        route = route + "rl"
-        route = route + "lr"
+#         route = route + "rl"
+#         route = route + "lr"
             
     
     return route
