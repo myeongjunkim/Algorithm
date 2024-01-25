@@ -85,6 +85,8 @@
 
     str.find(sub_string)
         -> KMP 문자열 검색 알고리즘
+    str.zfill(n)
+        -> 문자열 길이가 n 일 때까지 앞부분을 0 으로 채우기
     ```
 
 
