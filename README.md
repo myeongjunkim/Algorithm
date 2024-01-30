@@ -266,6 +266,9 @@
     ```
     거리 -> dist 리스트를 선언하고 이전 node 의 dist 값을 하나씩 늘려가며 기록
     경로 -> pre_node 리스트를 선언하고 이전 node 의 위치를 기록
+    범위 -> is_in_range 를 통해 분기 처리
+        def is_in_range(r, c):
+            return 0 <= r < N and 0 <= c < M
     ```
     
 4. DP 다이나믹 프로그래밍 알고리즘
