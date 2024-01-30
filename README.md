@@ -197,7 +197,16 @@
     -> {'e', 'h', 'l', 'o'}
     ```
 
-2. 큐
+2. 딕셔너리
+    
+    ```
+    a = defaultdict(list)
+    -> 키 셋팅 필요 없이 모든 키에 대한 초기값을 list 로 지정
+
+    ex) a["asdfas"].append("dfdfs") -> "asdfas" 키를 선언하지 않아도 Key 에러가 나지 않음
+    ```
+    
+3. 큐
 
     ```
     from collections import deque
