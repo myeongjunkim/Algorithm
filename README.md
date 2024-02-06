@@ -277,8 +277,77 @@
     ```
     
 5. Dijkstra 다익스트라 알고리즘
-6. 벨만포드 알고리즘
-7. Prime, Kruskal 알고리즘
+
+    ```
+    INF = int(1e9)
+    
+    def dijkstra(_map, s):
+        dp = [INF]*len(_map)
+        
+        dp[s] = 0
+        heap = [ (0,s) ]
+        while heap:
+            pos_w, pos_n = heappop(heap)
+            
+            if pos_w > dp[pos_n]: # pos_w가 더 크다면 pos_n를 거친 인접노드들은 볼 필요가 없어진다.
+                continue
+            for next_w, next_n in _map[pos_n]:
+                if dp[next_n] > dp[pos_n]+next_w:
+                    dp[next_n] = dp[pos_n]+next_w
+                    heappush( heap, (next_w, next_n) )
+        return dp
+    ```
+    ```
+    방문 -> 체크하지 않는다
+    dp -> s 에서 각 노드까지 최단거리를 기록하고 업데이트 한다.
+    
+    ```
+    
+6. Bellman Ford 벨만포드 알고리즘
+    
+    ```
+    INF = int(1e9)
+    
+    def bellman_ford(_map, start):
+        dp = [INF]*len(_map)
+
+        dp[start] = 0
+        for pos_n in range(len(_map)):
+            for next_w, next_n in _map[pos_n]:
+                if dp[pos_n] != INF and dp[next_n] > dp[pos_n] + next_w:
+                    dp[next_n] = dp[pos_n] + next_w
+                    if pos_n == len(_map) -1:
+                        return []
+        return dp
+
+    ```
+    ```
+    결과 -> dp 반환: 순환고리 x // [] 반환: 순환고리: o
+    ```
+
+7. Floyd Warshall 플로이드 워셜 알고리즘
+
+    ```
+    def floyd_warshall(_map, n)
+        dp = [[INF] * (n+1) for _ in range(n+1)]
+
+        for n1 in range(1, n+1):
+            dp[n1][n1] = 0
+            for w, n2 in _map[k]:
+                dp[n1][n2] = w
+    
+        for k in range(1, n+1): # via
+            for i in range(1, n+1): # start
+                for j in range(1, n+1): # end
+                    dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j])
+
+        return dp
+    ```
+    ```
+    조건 -> 사이클이 없는 것 전제
+    ```
+
+8. Prime, Kruskal 프림, 크루스칼 알고리즘
         
     [Prim MTS]
     ```
@@ -312,5 +381,5 @@
     ```
     -> 우선순위 큐 또는 최소힙을 사용해 가장 낮은 간선을 찾을 수 있다.
    
-8. KMP 알고리즘
-9. 위상정렬 알고리즘
+9. KMP 알고리즘
+10. 위상정렬 알고리즘
