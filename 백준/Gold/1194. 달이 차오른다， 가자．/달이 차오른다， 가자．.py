@@ -47,12 +47,12 @@ def solution(N, M, _map):
         q.append((k, new_r, new_c))
       elif _map[new_r][new_c] in KEY:
         new_k = k
-        if not is_included(KEY[_map[new_r][new_c]], k):
+        if not (KEY[_map[new_r][new_c]] & k):
           new_k = k + KEY[_map[new_r][new_c]]
         visited[k][new_r][new_c] = visited[k][r][c] + 1
         visited[new_k][new_r][new_c] = visited[k][r][c] + 1
         q.append((new_k, new_r, new_c))
-      elif _map[new_r][new_c] in DOOR and is_included(DOOR[_map[new_r][new_c]], k):
+      elif _map[new_r][new_c] in DOOR and DOOR[_map[new_r][new_c]] & k:
         visited[k][new_r][new_c] = visited[k][r][c] + 1
         q.append((k, new_r, new_c))
       elif _map[new_r][new_c] == "1":
@@ -60,15 +60,6 @@ def solution(N, M, _map):
         
   return -1
 
-def is_included(a, b):
-  a_str = str(bin(a))[2:][::-1]
-  b_str = str(bin(b))[2:][::-1]
-  index = len(a_str)-1
-  if len(a_str) <= len(b_str) and b_str[index] == "1":
-    return True
-  return False
-    
-  
 
 def get_start(N, M, _map):
   for r in range(N):
