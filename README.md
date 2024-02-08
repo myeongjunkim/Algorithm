@@ -184,9 +184,9 @@
 
     ```
     a = {1,2,3}
-
-    a.remove(2)
-    a.discard(3)
+    
+    a.remove(2) # 있는 것 제거, 없으면 index 에러
+    a.discard(3) # 없어도 에러 x
     a.add(1)
     set1 & set2
     set1 | set2
@@ -196,8 +196,23 @@
     set_line = set(line) 
     -> {'e', 'h', 'l', 'o'}
     ```
+    
+2. 비트마스크
+    
+    ```
+    &	AND 연산. 비교하는 비트가 둘 다 참일 때만 만족
+    |	OR 연산. 비교하는 비트가 둘 중 하나라도 참이면 만족
+    ^	XOR 연산. 비교하는 비트가 둘 중 하나만 참일때만 만족
+    ~	NOT 연산. 보수 연산으로 0 -> 1, 1 -> 0
+    <<	왼쪽 시프트 연산. 변수의 값을 지정된 값의 비트만큼 왼쪽으로 이동
+    >>	오른쪽 시프트 연산. 변수의 값을 지정된 값의 비트만큼 오른쪽으로 이동
+    ```
+    -> int type 에 사용 가능
+    -> bin() 결과값은 str type 이므로 사용 불가
+   
+ 
 
-2. 딕셔너리
+4. 딕셔너리
     
     ```
     a = defaultdict(list)
@@ -206,7 +221,7 @@
     ex) a["asdfas"].append("dfdfs") -> "asdfas" 키를 선언하지 않아도 Key 에러가 나지 않음
     ```
     
-3. 큐
+5. 큐
 
     ```
     from collections import deque
