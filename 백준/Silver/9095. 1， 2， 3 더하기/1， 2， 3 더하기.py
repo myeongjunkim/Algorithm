@@ -1,34 +1,30 @@
 import sys
 
-def factorial(n):
-    result = 1
-    for i in range(1,n+1):
-        result*=i
-    return result
+input = sys.stdin.readline
+
+"""
+조건: 
+  - 1, 2, 3 의 합으로 나타내기
+구현:
+  - n 은 n-1, n-2, n-3 의 경우를 더한 경우이다.
+    -> 이럴 경우 중복이 생기는 이슈 발생
+  
+"""
 
 
-def get_case(num):
-    cnt = 0
-    cnt_3 = num // 3
-    for i in range(cnt_3+1):
-        rest_num = num - i*3
-        cnt_2 = rest_num // 2
-        for j in range(cnt_2+1):
-            k = rest_num - j*2
-            cnt += factorial(i+j+k)//factorial(i)//factorial(j)//factorial(k)
+def solution(cases):
 
-    return cnt
+  N = max(cases)
+  dp = [0] * (N+4)
+  dp[0], dp[1], dp[2] = 1, 1, 2
 
-    
-N = int(input(''))
-result=[]
-for i in range(N):
-    num = int(sys.stdin.readline().strip())
+  for i in range(3, N+1):
+    dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
 
-    cnt = get_case(num)
-    result.append(cnt)
+  return [ dp[c] for c in cases ]
+  
+# main
+T = int(input())
+cases = [ int(input()) for _ in range(T) ]
+print(*solution(cases), sep="\n")
 
-
-
-for r in result:
-    print(r)
