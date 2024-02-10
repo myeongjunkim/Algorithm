@@ -5,26 +5,23 @@
 # 요구사항
 # 세단, suv // 2022-11-1 ~ 2022-11-30 // 50<=p<200
 # 대여금액 decs, 종류, ID decs
-with plan as(
-    select CAR_TYPE, DISCOUNT_RATE
-    from CAR_RENTAL_COMPANY_DISCOUNT_PLAN
-    where DURATION_TYPE = '30일 이상'
-)
 
 SELECT 
     car.CAR_ID,
     car.CAR_TYPE, 
-    CAST(car.DAILY_FEE * 30 * (100-plan.DISCOUNT_RATE) * 0.01 AS signed integer) as FEE
+    CAST(car.DAILY_FEE*30 * (100-plan.DISCOUNT_RATE)*0.01 AS signed integer) as FEE
     FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY as history
-    JOIN CAR_RENTAL_COMPANY_CAR as car on car.CAR_ID = history.CAR_ID
-    JOIN plan on car.CAR_TYPE = plan.CAR_TYPE
+    JOIN CAR_RENTAL_COMPANY_CAR as car 
+        on car.CAR_ID = history.CAR_ID
+    JOIN CAR_RENTAL_COMPANY_DISCOUNT_PLAN as plan
+        on car.CAR_TYPE = plan.CAR_TYPE
+        and plan.DURATION_TYPE = '30일 이상'
+        
     WHERE car.CAR_TYPE in ("SUV", "세단")
-    and car.DAILY_FEE * 30 * (100-plan.DISCOUNT_RATE) * 0.01 between 500000 and 2000000
+    and car.DAILY_FEE*30 * (100-plan.DISCOUNT_RATE)*0.01 between 500000 and 2000000
     group by car.CAR_ID
     having max(history.END_DATE) < "2022-11-1"
     order by 
         car.DAILY_FEE * 30 * (100-plan.DISCOUNT_RATE) * 0.01 desc,
         car.CAR_TYPE,
         car.CAR_ID desc
-        
-    
