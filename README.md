@@ -276,14 +276,50 @@
 ## Python 알고리즘
 
 1. DFS 깊이우선 탐색 알고리즘
-2. BFS 너비우선 탐색 알고리즘
 
-    ```
+   ```
+   visited = [[False] * C for _ in range(R)]  
+
+   def dfs(r, c):
+       global visited
+   
+       visited[r][c] = True
+       for dr, dc in [(1,0), (-1,0), (0,-1), (0,1)]:
+           new_r, new_c = r + dr, c + dc
+           if not (0<=new_r<R and 0<=new_c<C)
+               continue
+           if visited[new_r][new_c]:
+               continue
+           dfs(new_r, new_c)
+   ```
+
+3. BFS 너비우선 탐색 알고리즘
+
+   ```
+   def bfs(_map, start):
+       R, C = len(_map), len(_map[0])
+       visited = [[0] * C for _ in range(R)]
+       pre_node = [[ (-1,-1) for _ in range(C) ] for _ in range(R)]
+       q = deque([start])
+       while q:
+           r, c = q.popleft()
+           for dr, dc in [(1,0), (-1,0), (0,-1), (0,1)]:
+               new_r, new_c = r + dr, c + dc
+               if not (0<=new_r<R and 0<=new_c<C)
+                   continue
+               if visited[new_r][new_c] or (new_r, new_c) == start:
+                   continue
+               queue.append((new_r, next_c))
+               visited[new_r][new_c] = visited[r][c] + 1
+               pre_node[new_r][new_c] = (r, c)
+        
+   ```
+   ```
     거리 -> dist 리스트를 선언하고 이전 node 의 dist 값을 하나씩 늘려가며 기록
     경로 -> pre_node 리스트를 선언하고 이전 node 의 위치를 기록
     범위 -> not (0 <= r < N and 0 <= c < M) 를 통해 분기 처리
     방문 -> 인접 노드(new_r, new_c)를 q 에 추가할 때 방문 처리 ( pop 할 때 방문처리 하면 경우에 따라 메모리 초과 이슈 발생 )
-    ```
+   ```
     
 4. DP 다이나믹 프로그래밍 알고리즘
     
