@@ -333,11 +333,11 @@
     ```
     INF = int(1e9)
     
-    def dijkstra(_map, s):
+    def dijkstra(start, _map):
         dist = [INF]*len(_map)
         
-        dist[s] = 0
-        heap = [ (0,s) ]
+        dist[start] = 0
+        heap = [ (0,start) ]
         while heap:
             pos_dist, pos_n = heappop(heap)
             
@@ -347,32 +347,33 @@
                 if dist[next_n] > dist[pos_n]+next_w:
                     dist[next_n] = dist[pos_n]+next_w
                     heappush( heap, (dist[next_n], next_n) )
-        return dp
+        return dist
     ```
     ```
     방문 -> 체크하지 않는다
-    dp -> s 에서 각 노드까지 최단거리를 기록하고 업데이트 한다.
+    dist -> start 에서 각 노드까지 최단거리를 기록하고 업데이트 한다.
     
     ```
     
 6. Bellman Ford 벨만포드 알고리즘
     
     ```
-    def BF(start, _map):
-      dist = [sys.maxsize]*len(_map)
+    def BF(start, N, lines): 
+      dist = [sys.maxsize]*(N+1)
       dist[start] = 0
-      for pos_n in range(1, len(_map)):
-        for next_w, next_n in _map[pos_n]:
-          if dist[pos_n] != sys.maxsize and dist[next_n] > dist[pos_n] + next_w:
-            dist[next_n] = dist[pos_n] + next_w
-            if pos_n == len(_map)-1:
+      
+      for i in range(N):
+        for a, b, w in _map
+          if dist[a] != sys.maxsize and dist[b] > dist[a] + w:
+            dist[b] = dist[a] + w
+            if i == N-1:
               return []
       
       return dist
 
     ```
     ```
-    결과 -> dp 반환: 순환고리 x // [] 반환: 순환고리: o
+    결과 -> dist 반환: 순환고리 x // [] 반환: 순환고리: o
     ```
 
 7. Floyd Warshall 플로이드 워셜 알고리즘
