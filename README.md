@@ -315,7 +315,8 @@
         
    ```
    ```
-    거리 -> visited 리스트를 선언하고 이전 node 의 visited 값을 하나씩 늘려가며 기록 ( 시작 node 의 visited 값은 0 이기 때문에 예외처리 )
+    거리 -> visited 리스트를 선언하고 이전 node 의 visited 값을 하나씩 늘려가며 기록 
+            ( 시작 node 의 visited 값은 0 이기 때문에 예외처리 )
     경로 -> pre_node 리스트를 선언하고 이전 node 의 위치를 기록
     범위 -> not (0 <= r < N and 0 <= c < M) 를 통해 분기 처리
     방문 -> 인접 노드(new_r, new_c)를 q 에 추가할 때 방문 처리 ( pop 할 때 방문처리 하면 경우에 따라 메모리 초과 이슈 발생 )
