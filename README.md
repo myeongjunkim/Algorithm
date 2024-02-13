@@ -341,7 +341,7 @@
         while heap:
             n_dist, n = heappop(heap)
             
-            if n_dist > dist[n]: # n_dist가 더 크다면 n을 거친 인접노드들은 볼 필요가 없어진다.
+            if n_dist > dist[n]: # pop 되기 전에 다른 노드로 인해 최단거리가 업데이트된 상황
                 continue
             for next_w, next_n in _map[n]:
                 if dist[next_n] > dist[n]+next_w:
