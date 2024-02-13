@@ -343,9 +343,9 @@
             if n_dist > dist[n]: # n_dist가 더 크다면 n을 거친 인접노드들은 볼 필요가 없어진다.
                 continue
             for next_w, next_n in _map[n]:
-                if dp[next_n] > dp[n]+next_w:
-                    dp[next_n] = dp[n]+next_w
-                    heappush( heap, (dp[next_n], next_n) )
+                if dist[next_n] > dist[n]+next_w:
+                    dist[next_n] = dist[n]+next_w
+                    heappush( heap, (dist[next_n], next_n) )
         return dp
     ```
     ```
