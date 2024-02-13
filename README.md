@@ -339,13 +339,13 @@
         dist[s] = 0
         heap = [ (0,s) ]
         while heap:
-            n_dist, n = heappop(heap)
+            pos_dist, pos_n = heappop(heap)
             
-            if n_dist > dist[n]: # pop 되기 전에 다른 노드로 인해 최단거리가 업데이트된 상황
+            if pos_dist > dist[pos_n]: # pop 되기 전에 다른 노드로 인해 최단거리가 업데이트된 상황
                 continue
-            for next_w, next_n in _map[n]:
-                if dist[next_n] > dist[n]+next_w:
-                    dist[next_n] = dist[n]+next_w
+            for next_w, next_n in _map[pos_n]:
+                if dist[next_n] > dist[pos_n]+next_w:
+                    dist[next_n] = dist[pos_n]+next_w
                     heappush( heap, (dist[next_n], next_n) )
         return dp
     ```
