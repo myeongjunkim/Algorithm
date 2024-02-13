@@ -358,19 +358,17 @@
 6. Bellman Ford 벨만포드 알고리즘
     
     ```
-    INF = int(1e9)
-    
-    def bellman_ford(_map, start):
-        dp = [INF]*len(_map)
-
-        dp[start] = 0
-        for pos_n in range(len(_map)):
-            for next_w, next_n in _map[pos_n]:
-                if dp[pos_n] != INF and dp[next_n] > dp[pos_n] + next_w:
-                    dp[next_n] = dp[pos_n] + next_w
-                    if pos_n == len(_map) -1:
-                        return []
-        return dp
+    def BF(start, _map):
+      dist = [sys.maxsize]*len(_map)
+      dist[start] = 0
+      for pos_n in range(1, len(_map)):
+        for next_w, next_n in _map[pos_n]:
+          if dist[pos_n] != sys.maxsize and dist[next_n] > dist[pos_n] + next_w:
+            dist[next_n] = dist[pos_n] + next_w
+            if pos_n == len(_map)-1:
+              return []
+      
+      return dist
 
     ```
     ```
