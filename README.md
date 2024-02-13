@@ -333,19 +333,19 @@
     INF = int(1e9)
     
     def dijkstra(_map, s):
-        dp = [INF]*len(_map)
+        dist = [INF]*len(_map)
         
-        dp[s] = 0
+        dist[s] = 0
         heap = [ (0,s) ]
         while heap:
-            pos_w, pos_n = heappop(heap)
+            n_dist, n = heappop(heap)
             
-            if pos_w > dp[pos_n]: # pos_w가 더 크다면 pos_n를 거친 인접노드들은 볼 필요가 없어진다.
+            if n_dist > dist[n]: # n_dist가 더 크다면 n을 거친 인접노드들은 볼 필요가 없어진다.
                 continue
-            for next_w, next_n in _map[pos_n]:
-                if dp[next_n] > dp[pos_n]+next_w:
-                    dp[next_n] = dp[pos_n]+next_w
-                    heappush( heap, (next_w, next_n) )
+            for next_w, next_n in _map[n]:
+                if dp[next_n] > dp[n]+next_w:
+                    dp[next_n] = dp[n]+next_w
+                    heappush( heap, (dp[next_n], next_n) )
         return dp
     ```
     ```
