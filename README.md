@@ -128,14 +128,16 @@
     list(combinations_with_replacement([1,2,3,4], 2))
     ```
 
-5. Factorial
+5. 올림, 내림
 
     ```
-    def factorial(n):
-        result = 1
-        for i in range(1,n+1):
-            result*=i
-        return result
+    import math
+
+    math.ceil(-3.14)    # -3
+    math.ceil(3.14)     # 4
+    
+    math.floor(3.14)    # 3
+    math.floor(-3.14)   # -4
     ```
 
 6. enumerate
@@ -401,6 +403,30 @@
 8. Prime, Kruskal 프림, 크루스칼 알고리즘
         
     [Prim MTS]
+
+    ```
+    from heapq import heapify, heappush, heappop
+
+    def prim(N, _map):
+        mst = []
+        visited = [False]*(N+1)
+    
+        heap = [ (0,0,1) ]
+        while heap:
+            w, start_n, end_n = heappop(heap)
+            if visited[end_n]:
+                continue
+            visited[end_n] = True
+            mst.append((w, start_n, end_n))
+    
+            for next_w, next_n in _map[end_n]:
+                if visited[next_n]:
+                    continue
+                heapq.heappush(heap, (next_w, end_n, next_n))
+
+        return mst
+    ```
+
     ```
     시작 정점에서부터 출발하여 신장트리 집합을 단계적으로 확장 해나가는 방법
 
@@ -410,7 +436,7 @@
     1. 시작 단계에서는 시작 정점만이 MST(최소 비용 신장 트리) 집합에 포함된다.
     2. 앞 단계에서 만들어진 MST 집합에 인접한 정점들 중에서 최소 간선으로 연결된 정점을 선택하여 트리를 확장한다.
         즉, 가장 낮은 가중치를 먼저 선택한다.
-    3. 위의 과정을 트리가 (N-1)개의 간선을 가질 때까지 반복한다.
+    3. 위의 과정을 트리가 모든 연결 정점을 돌 때 까지 반복한다.
     ```
    
     [Kruskal MTS]
@@ -432,5 +458,5 @@
     ```
     -> 우선순위 큐 또는 최소힙을 사용해 가장 낮은 간선을 찾을 수 있다.
    
-9. Topology Sort 위상정렬 알고리즘
-10. Union-Find 유니온 파인드 알고리즘
+10. Topology Sort 위상정렬 알고리즘
+11. Union-Find 유니온 파인드 알고리즘
