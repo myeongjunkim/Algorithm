@@ -459,4 +459,26 @@
     -> 우선순위 큐 또는 최소힙을 사용해 가장 낮은 간선을 찾을 수 있다.
    
 10. Topology Sort 위상정렬 알고리즘
-11. Union-Find 유니온 파인드 알고리즘
+
+    ```
+    from collections import deque
+
+    
+    def topology_sort(N, _map):
+        indegree = [0] * (N + 1)
+        for _ in range(N+1):
+            for b in _map[a]:
+                indegree[b] += 1
+    
+        result = []
+        q = deque( [n for n in range(1, N+1) if indegree[i] == 0] )
+        while q:
+            pos_n = q.popleft()
+            result.append(pos_n)
+            for next_n in _map[pos_n]:
+                indegree[next_n] -= 1
+                if indegree[next_n] == 0:
+                    q.append(next_n)
+    ```
+    
+12. Union-Find 유니온 파인드 알고리즘
