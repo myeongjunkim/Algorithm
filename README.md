@@ -292,6 +292,8 @@
                continue
            if visited[new_r][new_c]:
                continue
+           if _map[new_r][new_c]:
+               continue
            dfs(new_r, new_c)
    ```
 
@@ -310,6 +312,8 @@
                if not (0<=new_r<R and 0<=new_c<C)
                    continue
                if visited[new_r][new_c] or (new_r, new_c) == start:
+                   continue
+               if _map[new_r][new_c]:
                    continue
                queue.append((new_r, next_c))
                visited[new_r][new_c] = visited[r][c] + 1
