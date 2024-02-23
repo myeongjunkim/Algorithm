@@ -325,13 +325,51 @@
     방문 -> 인접 노드(new_r, new_c)를 q 에 추가할 때 방문 처리 ( pop 할 때 방문처리 하면 경우에 따라 메모리 초과 이슈 발생 )
    ```
     
-4. DP 다이나믹 프로그래밍 알고리즘
+4. BFS/DFS 를 통한 클러스터링
+    ```
+    def bfs(r,c, id):
+        _map[r][c] = id
+        q = deque([(r,c)])
+        result = []
+        while q:
+          r, c = q.popleft()
+          result.append((r, c))
+          for dr, dc in [ (1,0), (-1,0), (0,1), (0,-1) ]:
+            new_r, new_c = r+dr, c+dc
+            if not (0<=new_r<N and 0<=new_c<M):
+              continue
+            if _map[new_r][new_c]:
+              continue
+            q.append((new_r, new_c))
+            _map[new_r][new_c] = id
+        return result
+
+    def cluster()
+      id_map = {}
+      id = 1
+      for r in range(N):
+        for c in range(M):
+          if _map[r][c] == 0:
+            id += 1
+            result = bfs(_map, r,c, id)
+            id_map[id] = result
+      return id_map
+    ```
+    ```
+        1. 모든 노드를 순회하면서 0 인 노드를 찾는다.
+        2. BFS 또는 DFS 를 통해 이를 시작점으로 하는 군집을 리턴한다.
+        3. cluster 함수에서 각 id 별 군집을 기록한다.
+    ```
+    
+
+
+5. DP 다이나믹 프로그래밍 알고리즘
     
     ```
     dp 배열 선언 -> 1, 2, 3 차원 배열을 통해 기록
     ```
     
-5. Dijkstra 다익스트라 알고리즘
+6. Dijkstra 다익스트라 알고리즘
 
     ```
     INF = int(1e9)
@@ -358,7 +396,7 @@
     
     ```
     
-6. Bellman Ford 벨만포드 알고리즘
+7. Bellman Ford 벨만포드 알고리즘
     
     ```
     def BF(start, N, lines): 
@@ -379,7 +417,7 @@
     결과 -> dist 반환: 순환고리 x // [] 반환: 순환고리: o
     ```
 
-7. Floyd Warshall 플로이드 워셜 알고리즘
+8. Floyd Warshall 플로이드 워셜 알고리즘
 
     ```
     def floyd_warshall(_map, n)
@@ -401,7 +439,7 @@
     조건 -> 사이클이 없는 것 전제
     ```
 
-8. Prime, Kruskal 프림, 크루스칼 알고리즘
+9. Prime, Kruskal 프림, 크루스칼 알고리즘
         
     [Prim MTS]
 
