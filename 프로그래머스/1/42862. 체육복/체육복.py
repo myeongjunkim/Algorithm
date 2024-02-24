@@ -10,6 +10,7 @@ def solution(n, lost, reserve):
             if s == reserve[i]:
                 visited[i] = True
                 possible = True
+                break
         if not possible:
             new_lost.append(s)
                 
