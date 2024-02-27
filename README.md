@@ -182,7 +182,23 @@
 
 ## Python 자료구조
 
-1. 집합
+1. 리스트
+    
+   a = [0,1,2,3,4,5]
+
+   a.pop()          
+   a.pop(index)      
+   a.remove(value)
+   a.insert(1, 10)   # 두 번째위치에 10 삽입  
+   a.index(value)
+   a.append(value)
+   a.extend([4,5,6])
+
+   a = [[1, 2], [3, 4]]
+   b = [item[:] for item in a]  # deapcopy 대신 사용 가능
+    
+
+3. 집합
 
     ```
     a = {1,2,3}
@@ -199,7 +215,7 @@
     -> {'e', 'h', 'l', 'o'}
     ```
     
-2. 비트마스크
+4. 비트마스크
     
     ```
     &	AND 연산. 비교하는 비트가 둘 다 참일 때만 만족
@@ -214,7 +230,7 @@
    
  
 
-4. 딕셔너리
+5. 딕셔너리
     
     ```
     a = defaultdict(list)
@@ -223,7 +239,7 @@
     ex) a["asdfas"].append("dfdfs") -> "asdfas" 키를 선언하지 않아도 Key 에러가 나지 않음
     ```
     
-5. 큐
+6. 큐
 
     ```
     from collections import deque
