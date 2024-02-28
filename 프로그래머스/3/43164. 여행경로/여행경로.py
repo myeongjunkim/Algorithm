@@ -6,11 +6,10 @@
     - 항상 "ICN" 공항에서 출발합니다.
 구현:
     - 도시 리스트 구하고 사전순 정렬
-    - 각 도시를 시작 도시로 하며 dfs 순회
     - depth 가 도시 숫자면 리턴
     - visited, _map
 예외:
-    -
+    - 모든 노드를 다 순회하는 것이 목적이 아니다. 즉 visited 관리를 하는 백트래킹 문제이다.
 """
 
 from collections import defaultdict
@@ -24,20 +23,14 @@ def solution(tickets):
         for city in _map:
             _map[city].sort() 
         return _map
-    def get_cities(tickets):
-        cities = set()
-        for a, b in tickets:
-            cities.add(a)
-            cities.add(b)
-        return list(cities)
-    
+
     
     _map = get_map(tickets)
     dist = len(tickets)+1
     visited = [False]*len(tickets)
-    result, path = [], []
-    def dfs(city):
-        nonlocal result, path, visited, dist, _map
+    result = []
+    def dfs(city, path):
+        nonlocal result, visited, dist, _map
         if result:
             return
         if len(path) == dist:
@@ -48,13 +41,12 @@ def solution(tickets):
                 continue
             visited[new_i] = True
             path.append(new_c)
-            dfs(new_c)
+            dfs(new_c, path)
             path.pop()
             visited[new_i] = False
     
     
-    path = ["ICN"]
-    dfs("ICN")
+    dfs("ICN", ["ICN"])
     return result
         
     
