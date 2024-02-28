@@ -153,7 +153,20 @@
     2 번쨰 값은 Third입니다 
     ```
 
-7. bisect 이진 탐색
+7. zip()
+
+    ```
+    numbers = [1, 2, 3]
+    letters = ["A", "B", "C"]
+    for pair in zip(numbers, letters):
+        print(pair)
+    
+    (1, 'A')
+    (2, 'B')
+    (3, 'C')
+    ```
+
+8. bisect 이진 탐색
 
     ```
     from bisect import bisect_right, bisect_left
@@ -183,20 +196,22 @@
 ## Python 자료구조
 
 1. 리스트
-    
-   a = [0,1,2,3,4,5]
 
-   a.pop()          
-   a.pop(index)      
-   a.remove(value)
-   a.insert(1, 10)   # 두 번째위치에 10 삽입  
-   a.index(value)
-   a.append(value)
-   a.extend([4,5,6])
+    ```
+    a = [0,1,2,3,4,5]
 
-   a = [[1, 2], [3, 4]]
-   b = [item[:] for item in a]  # deapcopy 대신 사용 가능
-    
+    a.pop()          
+    a.pop(index)      
+    a.remove(value)
+    a.insert(1, 10)   # 두 번째위치에 10 삽입  
+    a.index(value)
+    a.append(value)
+    a.count(value)
+    a.extend([4,5,6])
+ 
+    a = [[1, 2], [3, 4]]
+    b = [item[:] for item in a]  # deapcopy 대신 사용 가능
+    ```
 
 3. 집합
 
