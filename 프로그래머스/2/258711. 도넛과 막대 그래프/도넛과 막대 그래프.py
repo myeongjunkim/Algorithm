@@ -37,14 +37,12 @@ from collections import defaultdict, deque
 def solution(edges):
     def get_map(edges):
         _map = defaultdict(list)
-        key_set, value_set, all_node_set = set(), set(), set()
+        key_set, value_set = set(), set()
         for i in range(len(edges)):
             a, b = edges[i]
             _map[a].append((b, i))
             key_set.add(a)
             value_set.add(b)
-            all_node_set.add(a)
-            all_node_set.add(b)
         
         add_node = 0
         for key in list(key_set-value_set):
@@ -54,16 +52,13 @@ def solution(edges):
         return _map, add_node
         
         
-        
-        
 
     def bfs(index):
         nonlocal visited, _map, edges
         
-        a, b = edges[index]
+        add_node, b = edges[index]
         route_count = 0
         node_set = set([b])
-        
         q = deque( [ b ] )
         while q:
             pos_n = q.popleft()
