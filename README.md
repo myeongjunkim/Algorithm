@@ -203,6 +203,7 @@
     a.pop()          
     a.pop(index)      
     a.remove(value)
+    del a[index)
     a.insert(1, 10)   # 두 번째위치에 10 삽입  
     a.index(value)
     a.append(value)
@@ -211,6 +212,10 @@
  
     a = [[1, 2], [3, 4]]
     b = [item[:] for item in a]  # deapcopy 대신 사용 가능
+
+    a = [[1, 10], [2, 22], [3, 19], [4, 7]]
+    b = sum(list1, [])                       # list1 의 요소들을 [] 에 반복하여 더한다.
+    >> [1, 10, 2, 22, 3, 19, 4, 7]
     ```
 
 3. 집합
