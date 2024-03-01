@@ -331,26 +331,7 @@
            if _map[new_r][new_c]:
                continue
            dfs(new_r, new_c)
-   ```
-   ```
-   def dfs(start):
-       visited = [[False] * C for _ in range(R)]  
-       visited[r][c] = True
-    
-       stack = [start]
-       while stack:
-           r, c = stack.pop()
-           for dr, dc in [(1,0), (-1,0), (0,-1), (0,1)]:
-               new_r, new_c = r + dr, c + dc
-               if not (0<=new_r<R and 0<=new_c<C)
-                   continue
-               if visited[new_r][new_c]:
-                   continue
-               if _map[new_r][new_c]:
-                   continue
-               stack.append((new_r, new_c))
-               visited[new_r][new_c] = True
-   ```
+   ``` 
 
 3. BFS 너비우선 탐색 알고리즘
 
@@ -370,7 +351,7 @@
                    continue
                if _map[new_r][new_c]:
                    continue
-               queue.append((new_r, next_c))
+               q.append((new_r, next_c))
                visited[new_r][new_c] = visited[r][c] + 1
                pre_node[new_r][new_c] = (r, c)
         
