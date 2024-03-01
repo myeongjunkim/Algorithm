@@ -12,8 +12,7 @@
     - charcterX, charcterY는 1 이상 50 이하인 자연수
     - itemX, itemY는 1 이상 50 이하인 자연수
 구현:
-    - 좌,하단 기준으로 직사각형 정렬
-    - 반시계방향으로 회전, 
+    - 항상 반시계방향으로 회전
     - item 좌표와 같아지면 거리 체크 후 원점 도착까지 진행하여 거리 체크
     - move(point) 메소드 구현
         - 다음 좌표 리턴
@@ -40,7 +39,9 @@ def solution(rectangle, characterX, characterY, itemX, itemY):
             if x1 == point_x and y1<point_y<=y2:
                 result.append(3)
         
-        return max(result) if result == [0, 3] else min(result)
+        # 교점일 경우 len(result) == 2 
+        # l_index 에 우선순위 존재 0 -> 3 -> 2 -> 1 -> 0 -> ,,,
+        return max(result) if set(result) == {0, 3} else min(result)
                 
     
     def move(point, l_index):
@@ -50,7 +51,6 @@ def solution(rectangle, characterX, characterY, itemX, itemY):
         return (x+dx, y+dy)
     
     
-    rectangle = sorted(rectangle, key=lambda r:(r[0], r[1]))
     start = (characterX, characterY)
     item = (itemX, itemY)
     current = (characterX, characterY)
